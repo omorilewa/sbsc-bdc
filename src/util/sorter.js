@@ -56,3 +56,17 @@ const locations = data.reduce((acc, curr) => {
 }, [])
 return locations;
 }
+
+export const transformUsers = (rawData) => {
+  return rawData.reduce((acc, curr, index) => {
+    const accItem = {
+      id: index,
+      name: curr.name,
+      username: curr.username,
+      role: curr.__typename.slice(3),
+      status: 'Inactive'
+    }
+    acc = acc.concat(accItem) || [];
+    return acc;
+  }, [])
+}
