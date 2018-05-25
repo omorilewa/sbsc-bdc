@@ -821,6 +821,59 @@ export const UserStyles = StyleSheet.create({
     marginBottom: 4,
     marginLeft: 70
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    borderRadius: 1,
+    width: '80%',
+    borderColor: "rgba(0, 0, 0, 0.1)"
+  },
+  button1: {
+    fontSize: 12,
+    marginLeft: 11,
+    color: '#afd9a8'
+  },
+  button2: {
+    fontSize: 12,
+    marginLeft: 11,
+    color: '#a3a3a3'
+  },
+  modalheader: {
+    fontSize: 15,
+    color: '#afd9a8'
+  },
+  close: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 30
+  },
+  modalhr: {
+    borderBottomColor: '#afd9a8',
+    borderBottomWidth: 0.8,
+    marginTop:10,
+    marginBottom: 10,
+    width: '100%'
+  },
+  content: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  body: {
+    fontSize: 12,
+  },
+  contentWidth: {
+    // width: '40%'
+  },
+  currency: {
+    fontSize: 12,
+    color: 'black'
+  },
   picker: {
     width: '100%',
     marginTop: 5
