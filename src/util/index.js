@@ -28,3 +28,4 @@ export {
   transformUsers,
 } from './sorter';
 export { faqs } from './faqs';
+export { default as introspectionQueryResultData } from './fragmentTypes';
