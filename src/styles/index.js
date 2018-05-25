@@ -980,6 +980,9 @@ export const UserListStyles = StyleSheet.create({
     paddingRight: 0,
     width: '14%',
   },
+  actionView: {
+    alignItems: 'center'
+  },
   status: {
     width: '16%'
   },
