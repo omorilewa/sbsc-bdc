@@ -76,8 +76,10 @@ class SideMenu extends PureComponent {
                 isAdmin &&
                 <TouchableNativeFeedback onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
                   <View style={[styles.label, styles.userLabel]}>
-                    <Icon active name='ios-person-add-outline' />
-
+                  <Image
+                    style={styles.icon}
+                    source={require(`../assets/images/icon_profile.png`)}
+                  />
                     <Text style={[styles.menuItemsText, styles.usersText]}>MANAGE USERS</Text>
                   </View>
                 </TouchableNativeFeedback>
