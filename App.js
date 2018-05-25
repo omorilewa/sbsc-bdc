@@ -9,7 +9,6 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text
 } from 'react-native';
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
@@ -45,9 +44,6 @@ export default class App extends Component<Props> {
           </Provider>
         </AppProvider>
       </ApolloProvider>
-      // <View>
-      //   <Text>Hello</Text>
-      // </View>
     );
   }
 }
