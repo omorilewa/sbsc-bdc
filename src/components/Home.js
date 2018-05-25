@@ -22,7 +22,6 @@ class Home extends PureComponent {
     error: bool,
     errorText: string,
     handleSubmit: func,
-    loading: bool,
     loginUser: func,
     removeErrorText: func,
     showLogo: bool,
@@ -39,7 +38,6 @@ class Home extends PureComponent {
       error,
       errorText,
       handleSubmit,
-      loading,
       loginUser,
       removeErrorText,
       showError,
@@ -83,27 +81,29 @@ class Home extends PureComponent {
                   secureTextEntry
                 />
                 <Mutation mutation={AUTHENTICATE_USER} onCompleted={loginUser} onError={showError}>
-                  {(login, { data, loading, error }) => (
-                    <View style={styles.buttonView}>
-                      <Button
-                        block rounded default color="#50AE32" height={60}
-                        onPress={handleSubmit(async (values) => {
-                          const { username, password } = values;
-                          removeItem('token');
-                          removeErrorText();
-                          changeUsername(username);
-                          await login({
-                            variables: { username, password }
-                          });
-                        })}>
-                        <Text style={styles.buttonText}>Get Started</Text>
-                      </Button>
-                      {loading && <Loader loading={loading} />}
-                    </View>
-                  )}
+                  {(login, { data, loading, error }) => {
+                    if (loading) {
+                      return <Loader loading={loading} />;
+                    }
+                    return (
+                      <View style={styles.buttonView}>
+                        <Button
+                          block rounded default color="#50AE32" height={60}
+                          onPress={handleSubmit(async (values) => {
+                            const { username, password } = values;
+                            removeItem('token');
+                            removeErrorText();
+                            changeUsername(username);
+                            await login({
+                              variables: { username, password }
+                            });
+                          })}>
+                          <Text style={styles.buttonText}>Get Started</Text>
+                        </Button>
+                      </View>
+                    )}}
                 </Mutation>
               </View>
-              {loading && <Loader loading={loading} />}
             </View>
           </ImageBackground>
         )}

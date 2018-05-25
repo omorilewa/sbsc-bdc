@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { func } from "prop-types";
 import {
   View,
-  TouchableHighlight,
+  TouchableNativeFeedback,
   Dimensions,
   Keyboard,
   ScrollView
@@ -11,7 +11,7 @@ import { Item, Label, Picker } from "native-base";
 import { Field } from "redux-form";
 import Modal from 'react-native-modal';
 import { Mutation } from 'react-apollo';
-import { ADD_BDC_RATE, PREVIOUS_RATES } from '../util';
+import { ADD_BDC_RATE, PREV_RATES } from '../util';
 import Loader from "./Loader";
 import {
   LineInput,
@@ -24,6 +24,11 @@ import { required, number } from '../util';
 const window = Dimensions.get('window');
 
 class NewRateForm extends Component {
+  static propTypes = {
+    handleSubmit: func,
+    reset: func,
+  };
+
   state = {
     selected: "USD",
     isVisible: false,
@@ -93,7 +98,6 @@ class NewRateForm extends Component {
 
   openModal = (values) => {
     const { buyRate, sellRate } = values
-
     this.setState((state) => ({
       isVisible: true,
       buyRate,
@@ -199,33 +203,28 @@ class NewRateForm extends Component {
                     {!!errored && <Text style={styles.errorText}>{errorText}</Text>}
                   </View>
                   <View style={styles.close}>
-                    <TouchableHighlight
+                    <TouchableNativeFeedback
                       onPress={() => {
                         reset()
                         this.setState({ isVisible: false, errored: false })
                       }}
                       underlayColor="white">
                       <Text style={styles.button2}>CANCEL</Text>
-                    </TouchableHighlight>
+                    </TouchableNativeFeedback>
                     <Mutation mutation={ADD_BDC_RATE} onError={this.showError} onCompleted={this.clearForm}>
                       {(newBDCRate, { data, loading, error }) => (
-                        <View>
-                          <TouchableHighlight disabled={disabled} underlayColor="white"
+                        <Fragment>
+                          <TouchableNativeFeedback disabled={disabled} underlayColor="white"
                             onPress={() =>
                               newBDCRate({
                                 variables: { buyRate, sellRate, currency: selected },
-                                update: (cache, { data: { newBDCRate } }) => {
-                                  const { previousRates } = cache.readQuery({query: PREVIOUS_RATES });
-                                  cache.writeQuery({
-                                    query: PREVIOUS_RATES,
-                                    data: { previousRates: previousRates.concat([newBDCRate]) } });
-                                }
+                                refetchQueries: [{ query: PREV_RATES }]
                               })
                             }>
                             <Text style={styles.button1}>CONTINUE</Text>
-                          </TouchableHighlight>
+                          </TouchableNativeFeedback>
                           {loading && <Loader loading={loading} />}
-                        </View>
+                        </Fragment>
                       )}
                     </Mutation>
                   </View>
@@ -237,11 +236,6 @@ class NewRateForm extends Component {
       </View>
     );
   }
-};
-
-NewRateForm.propTypes = {
-  handleSubmit: func,
-  reset: func,
 };
 
 export default NewRateForm;
