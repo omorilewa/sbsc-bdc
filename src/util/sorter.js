@@ -56,3 +56,13 @@ const locations = data.reduce((acc, curr) => {
 }, [])
 return locations;
 }
+
+export const locationId = (data, location) => {
+  const Id = data.locations.reduce((acc, curr) => {
+     if(curr.name === location) {
+       acc = curr.id;
+     }
+     return acc;
+  }, '')
+  return Id;
+}
