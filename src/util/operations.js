@@ -7,25 +7,9 @@ export const AUTHENTICATE_USER = gql`
       password: $password
     }) {
       token
-      user{
+      user {
         username
       }
-    }
-  }
-`;
-
-export const PREVIOUS_RATES = gql`
-  query getPreviousRates {
-    previousRates {
-      date,
-      rate {
-        buyRate
-        sellRate
-        currency
-        periodOfDay
-      }
-      createdAt,
-      updatedAt
     }
   }
 `;
@@ -40,55 +24,55 @@ export const GET_LOCATION = gql`
 `;
 
 export const PREV_RATES = gql`
-query location($cursor: ID) {
-  viewer {
-    user {
-      ... on BDCOperator {
-        previousRatesConnection(first:20, after: $cursor) {
-          pageInfo{
-            hasNextPage
-            hasPreviousPage
-            endCursor
-          }
-          edges {
-            cursor
-            node {
-              id
-              rate {
-                buyRate
-                sellRate
-                periodOfDay
-                currency
+  query previousRates($cursor: ID) {
+    viewer {
+      user {
+        ... on BDCOperator {
+          previousRatesConnection(first:20, after: $cursor) {
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              endCursor
+            }
+            edges {
+              cursor
+              node {
+                id
+                rate {
+                  buyRate
+                  sellRate
+                  periodOfDay
+                  currency
+                }
+                date
+                createdAt
+                updatedAt
               }
-              date
-              createdAt
-              updatedAt
             }
           }
         }
       }
     }
   }
-}
 `;
 
 
 export const ADD_BDC_RATE = gql`
-mutation newRate($buyRate: Float!, $sellRate: Float!, $currency: CURRENCY!) {
-  newBDCRate(data: {
-    buyRate: $buyRate
-    sellRate: $sellRate
-    currency: $currency
-  }){
-    date
-    rate {
-      buyRate
-      sellRate
-      currency
-      periodOfDay
+  mutation newRate($buyRate: Float!, $sellRate: Float!, $currency: CURRENCY!) {
+    newBDCRate(data: {
+      buyRate: $buyRate
+      sellRate: $sellRate
+      currency: $currency
+    }){
+      date
+      rate {
+        buyRate
+        sellRate
+        currency
+        periodOfDay
+      }
+      createdAt
+      updatedAt
     }
-    createdAt
-    updatedAt
   }
-}
 `;
