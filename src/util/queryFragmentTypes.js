@@ -27,7 +27,7 @@ fetch('https://bdc-api.herokuapp.com/api/graphql', {
       type => type.possibleTypes !== null,
     );
     result.data.__schema.types = filteredData;
-    fs.writeFile('./src/util/fragmentTypes.json', JSON.stringify(result.data), err => {
+    fs.writeFile('./src/util/fragmentTypes.json', JSON.stringify(result.data, null, 2), err => {
       if (err) {
         console.error('Error writing fragmentTypes file', err);
       } else {
