@@ -50,11 +50,11 @@ export const loadImage = (curr) => {
 }
 
 export const sortLocation = (data) => {
-const locations = data.reduce((acc, curr) => {
-  acc.push(curr.name);
-  return acc;
-}, [])
-return locations;
+  const locations = data.reduce((acc, curr) => {
+    acc.push(curr.name);
+    return acc;
+  }, [])
+  return locations;
 }
 
 export const transformUsers = (rawData) => {
@@ -70,4 +70,8 @@ export const transformUsers = (rawData) => {
     acc = acc.concat(accItem) || [];
     return acc;
   }, [])
+}
+
+export const locationId = (data, location) => {
+  return (data.locations.find(item => item.name === location)).id;
 }

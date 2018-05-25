@@ -9,20 +9,22 @@ export {
 export { default as store } from './store';
 export { default as client } from './client'
 export { prevRates } from './rates';
-export { number, required, email } from './validation';
+export { number, required, emailValidate } from './validation';
 export {
-  AUTHENTICATE_USER,
-  PREVIOUS_RATES,
   ADD_BDC_RATE,
-  PREV_RATES,
+  AUTHENTICATE_USER,
+  CREATE_BDC_OPERATOR,
+  FETCH_USERS,
   GET_LOCATION,
-  FETCH_USERS
+  PREV_RATES,
+  PREVIOUS_RATES,
 } from './operations';
 export {
-  transformData,
-  sortRates,
   loadImage,
+  locationId,
   sortLocation,
+  sortRates,
+  transformData,
   transformUsers,
 } from './sorter';
 export { faqs } from './faqs';
