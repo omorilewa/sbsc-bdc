@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { func } from "prop-types";
 import { View } from "react-native";
 import { Label } from "native-base";
@@ -12,7 +12,11 @@ import {
 import { RateBoundariesStyles as styles } from "../styles";
 import { required, number } from '../util';
 
-class RateBoundariesForm extends Component {
+class RateBoundariesForm extends PureComponent {
+  static propTypes = {
+    handleSubmit: func,
+  }
+
   state = {
     morningSelection: "",
     afternoonSelection: "",
@@ -44,6 +48,10 @@ class RateBoundariesForm extends Component {
   }
 
   render() {
+    const {
+      state: { morningSelection, afternoonSelection, eveningSelection },
+      eveningChange, afternoonChange, morningChange } = this;
+
     return (
       <View style={styles.main}>
         <Text style={styles.titleText}>Set Rate Boundaries:</Text>
@@ -73,18 +81,18 @@ class RateBoundariesForm extends Component {
         <View style={styles.pickersView}>
           <PeriodPicker
             timeOfDay="Morning"
-            selectedValue={this.state.morningSelection}
-            onValueChange={this.morningChange}
+            selectedValue={morningSelection}
+            onValueChange={morningChange}
           />
           <PeriodPicker
             timeOfDay="Afternoon"
-            selectedValue={this.state.afternoonSelection}
-            onValueChange={this.afternoonChange}
+            selectedValue={afternoonSelection}
+            onValueChange={afternoonChange}
           />
           <PeriodPicker
             timeOfDay="Evening"
-            selectedValue={this.state.eveningSelection}
-            onValueChange={this.eveningChange}
+            selectedValue={eveningSelection}
+            onValueChange={eveningChange}
           />
         </View>
         <Button block rounded style={styles.buttonBody}>
@@ -93,10 +101,6 @@ class RateBoundariesForm extends Component {
       </View>
     );
   }
-};
-
-RateBoundariesForm.propTypes = {
-  handleSubmit: func
 };
 
 export default RateBoundariesForm;
