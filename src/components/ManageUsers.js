@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { UsersTableHeader, UserListItem } from '.';
-import { allUsers } from '../util';
 import { UserListStyles as styles } from '../styles';
 
 class ManageUsers extends Component {
-  static navigationOptions = {
-    title: 'MANAGE USERS',
+  state = {
+    usersData: this.props.usersData,
   }
 
-  state = {
-    usersData: allUsers,
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.usersData !== prevState.usersData) {
+      return {
+        usersData: nextProps.usersData,
+      };
+    }
+    return null;
   }
 
   render() {
@@ -21,6 +25,8 @@ class ManageUsers extends Component {
         <UsersTableHeader />
         <FlatList
           data={usersData}
+          onEndReachedThreshold={0.5}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({item, index}) => (
             <View
               key={index}
@@ -28,11 +34,11 @@ class ManageUsers extends Component {
                 styles.usersView :
                 [styles.usersView, styles.listBGColor]}>
                 <UserListItem
-                  id={item["#"]}
-                  Name={item.Name}
-                  Username={item.Username}
-                  Role={item.Role}
-                  Status={item.Status}
+                  id={item.id}
+                  name={item.name}
+                  username={item.username}
+                  role={item.role}
+                  status={item.status}
                   key={index}/>
             </View>
           )}
