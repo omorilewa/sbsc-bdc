@@ -186,7 +186,7 @@ export const NewRateStyles = StyleSheet.create({
   },
   formLabel: {
     color: "#B9DEB3",
-    fontSize: 11,
+    fontSize: 13,
     fontFamily: "montserrat"
   },
   errorText: {
@@ -303,7 +303,9 @@ export const NewRateStyles = StyleSheet.create({
   },
   inputField: {
     paddingLeft: 0,
-    fontSize: 11,
+    paddingTop: 0,
+    paddingBottom: 0,
+    fontSize: 13,
     height: 20,
     marginTop: 7,
     fontFamily: 'montserrat',
@@ -566,6 +568,8 @@ export const RateBoundariesStyles = StyleSheet.create({
     marginLeft: '12%'
   },
   inputField: {
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: 0,
     fontSize: 11,
     height: 20,
@@ -801,8 +805,10 @@ export const FAQModalFormStyles = StyleSheet.create({
     marginBottom: 15
   },
   inputField: {
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: 0,
-    fontSize: 11,
+    fontSize: 13,
     height: 15,
     marginTop: 3,
     fontFamily: 'montserrat',
@@ -897,6 +903,8 @@ export const UserStyles = StyleSheet.create({
     alignItems: "center",
   },
   inputField: {
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: 0,
     fontSize: 10,
     height: 15,
