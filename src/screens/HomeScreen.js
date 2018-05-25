@@ -21,7 +21,6 @@ class HomeScreen extends Component {
   }
 
   state = {
-    loading: false,
     showLogo: true,
     visibleHeight: window.height,
     errored: false,
@@ -55,10 +54,6 @@ class HomeScreen extends Component {
     }));
   }
 
-  closeModal = () => {
-    this.setState({ loading: false });
-  }
-
   showError = (error) => {
     if (JSON.stringify(error).includes('Invalid Credentials')) {
       this.setState(() => ({
@@ -90,11 +85,9 @@ class HomeScreen extends Component {
     __typename === 'BDCAdmin' ? navigate('ManageUsers') : navigate('DrawerStack');
   }
 
-
-
   render() {
     const {
-      state: { showLogo, loading, visibleHeight, errored, errorText },
+      state: { showLogo, visibleHeight, errored, errorText },
       props: { handleSubmit },
       removeErrorText, showError, loginUser,
     } = this;
@@ -103,7 +96,6 @@ class HomeScreen extends Component {
         error={errored}
         errorText={errorText}
         handleSubmit={handleSubmit}
-        loading={loading}
         loginUser={loginUser}
         removeErrorText={removeErrorText}
         showError={showError}
