@@ -32,7 +32,7 @@ class CreateUserPage extends Component {
         }
         return (
           <View style={styles.wrapperView}>
-            <CreateUserForm location={sortLocation(data.locations)}/>
+            <CreateUserForm data={data} location={sortLocation(data.locations)}/>
           </View>
         );
       }}
