@@ -28,4 +28,3 @@ export {
   transformUsers,
 } from './sorter';
 export { faqs } from './faqs';
-export { default as allUsers } from './userList';
