@@ -23,6 +23,31 @@ export const GET_LOCATION = gql`
   }
 `;
 
+export const CREATE_BDC_OPERATOR = gql`
+mutation newbdcoperator($email: String!,
+  $username: String!,
+  $password: String!,
+  $firstName: String!,
+  $lastName: String!,
+  $locationId: String!,
+  $phoneNumber: String!) {
+  createBDCOperator(data: {
+    email: $email,
+    username: $username,
+    password: $password,
+    firstName: $firstName,
+    lastName: $lastName,
+    locationId: $locationId,
+    phoneNumber: $phoneNumber
+  }) {
+    name
+    location {
+      name
+    }
+  }
+}
+`;
+
 export const PREV_RATES = gql`
   query previousRates($cursor: ID) {
     viewer {
