@@ -58,9 +58,10 @@ return locations;
 }
 
 export const transformUsers = (rawData) => {
-  return rawData.reduce((acc, curr, index) => {
+  const mappedToNode = rawData.usersConnection.edges.map(item => item.node);
+  return mappedToNode.reduce((acc, curr, index) => {
     const accItem = {
-      id: index,
+      id: index + 1,
       name: curr.name,
       username: curr.username,
       role: curr.__typename.slice(3),
