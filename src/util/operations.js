@@ -76,3 +76,24 @@ export const ADD_BDC_RATE = gql`
     }
   }
 `;
+
+export const FETCH_USERS = gql`
+  query users {
+    usersConnection(first: 15) {
+      edges {
+        node {
+          ... on BDCOperator {
+            email
+            username
+            name
+          }
+          ... on BDCAdmin {
+            email
+            username
+            name
+          }
+        }
+      }
+    }
+  }
+`;
