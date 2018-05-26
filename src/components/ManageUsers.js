@@ -50,7 +50,8 @@ class ManageUsers extends PureComponent {
             fetchMore({
               variables: { cursor: endCursor },
               updateQuery: (previousResult, { fetchMoreResult }) => {
-                const { edges: newEdges, pageInfo } = fetchMoreResult.usersConnection;
+                const newEdges = fetchMoreResult.usersConnection.edges;
+                const { pageInfo } = fetchMoreResult.usersConnection;
 
                 return newEdges.length
                   ? {
