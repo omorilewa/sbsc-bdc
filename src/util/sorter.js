@@ -54,19 +54,21 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  const rawDataCopy = rawData.usersConnection.edges.slice();
-  return rawDataCopy.reverse().reduce((acc, curr, index) => {
-    const accItem = {
-      id: index + 1,
-      name: curr.node.name,
-      username: curr.node.username,
-      role: curr.node.__typename.slice(3),
-      status: 'Inactive',
-      cursor: curr.cursor
-    }
-    acc = acc.concat(accItem) || [];
-    return acc;
-  }, [])
+  if (rawData.usersConnection !== null) {
+    const rawDataCopy = rawData.usersConnection.edges.slice() || [];
+    return rawDataCopy.reduce((acc, curr, index) => {
+      const accItem = {
+        id: index + 1,
+        name: curr.node.name,
+        username: curr.node.username,
+        role: curr.node.__typename.slice(3),
+        status: 'Inactive',
+      }
+      acc = acc.concat(accItem) || [];
+      return acc;
+    }, [])
+  }
+  return null;
 }
 
 export const locationId = (data, location) => {
