@@ -106,8 +106,6 @@ export const FETCH_USERS = gql`
   query users($cursor: ID) {
     usersConnection(first: 15, after: $cursor) {
       pageInfo {
-        hasNextPage
-        hasPreviousPage
         endCursor
       }
       edges {
