@@ -1,4 +1,7 @@
-{
+import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
+
+const fm = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: {
   "__schema": {
     "types": [
       {
@@ -37,3 +40,6 @@
     ]
   }
 }
+});
+
+export default fm;
