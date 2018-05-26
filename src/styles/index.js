@@ -677,7 +677,7 @@ export const FAQStyles = StyleSheet.create({
     width: '90%'
   },
   subText: {
-    fontSize: 9,
+    fontSize: 12,
     fontFamily: "montserrat",
     color: 'white',
     marginTop: 5,
