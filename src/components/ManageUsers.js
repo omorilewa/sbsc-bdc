@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, FlatList } from 'react-native';
 import { UsersTableHeader, UserListItem } from '.';
 import { UserListStyles as styles } from '../styles';
 
-class ManageUsers extends Component {
+class ManageUsers extends PureComponent {
   state = {
     usersData: this.props.usersData,
   }
@@ -24,7 +24,7 @@ class ManageUsers extends Component {
     } = this;
 
     return (
-      <View>
+      <View style={styles.outerView}>
         <UsersTableHeader />
         <FlatList
           data={usersData}
@@ -42,7 +42,8 @@ class ManageUsers extends Component {
                   username={item.username}
                   role={item.role}
                   status={item.status}
-                  key={index}/>
+                  key={index}
+                />
             </View>
           )}
           onEndReached={() => {

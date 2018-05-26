@@ -997,6 +997,9 @@ export const UserListStyles = StyleSheet.create({
     fontSize: 11,
     fontFamily: "monteserrat-light",
   },
+  outerView: {
+    flex: 1
+  },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
