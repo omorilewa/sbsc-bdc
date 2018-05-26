@@ -10,14 +10,14 @@ export { default as store } from './store';
 export { default as client } from './client'
 export { prevRates } from './rates';
 export { number, required, emailValidate } from './validation';
+export { default as introspectionQueryResultData } from './fragmentTypes';
 export {
   ADD_BDC_RATE,
   AUTHENTICATE_USER,
   CREATE_BDC_OPERATOR,
-  FETCH_USERS,
   GET_LOCATION,
+  FETCH_USERS,
   PREV_RATES,
-  PREVIOUS_RATES,
 } from './operations';
 export {
   loadImage,
@@ -28,4 +28,3 @@ export {
   transformUsers,
 } from './sorter';
 export { faqs } from './faqs';
-export { default as introspectionQueryResultData } from './fragmentTypes';

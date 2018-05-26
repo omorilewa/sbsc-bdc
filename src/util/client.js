@@ -5,7 +5,7 @@ import { onError } from 'apollo-link-error';
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { getItem } from '.';
-import { introspectionQueryResultData } from './fragmentTypes';
+import { introspectionQueryResultData } from '.';
 
 
 const uri = 'https://bdc-api.herokuapp.com/api/graphql';
