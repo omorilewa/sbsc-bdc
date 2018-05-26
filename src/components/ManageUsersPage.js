@@ -3,7 +3,6 @@ import { Query } from 'react-apollo';
 import { ManageUsers, ErrorComponent, Loader } from '.';
 import { transformUsers, FETCH_USERS } from '../util';
 
-
 class ManageUsersPage extends PureComponent {
   static navigationOptions = {
     title: 'MANAGE USERS',
@@ -12,7 +11,7 @@ class ManageUsersPage extends PureComponent {
   render() {
     return (
       <Query query={FETCH_USERS}>
-        {({loading, error, data}) => {
+        {({ loading, error, data, fetchMore }) => {
           if(loading) {
             return <Loader loading={loading} />;
           }
@@ -21,7 +20,14 @@ class ManageUsersPage extends PureComponent {
           }
           if(data) {
             const transformedUsers = transformUsers(data);
-            return <ManageUsers usersData={transformedUsers} />;
+            return (
+              <ManageUsers
+                usersData={transformedUsers}
+                fetchMore={fetchMore}
+                endCursor={data.usersConnection.pageInfo.endCursor}
+                hasNextPage={data.usersConnection.pageInfo.hasNextPage}
+              />
+            );
           }
         }}
       </Query>
