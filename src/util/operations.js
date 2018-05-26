@@ -103,9 +103,15 @@ export const ADD_BDC_RATE = gql`
 `;
 
 export const FETCH_USERS = gql`
-  query users {
-    usersConnection(first: 15) {
+  query users($cursor: ID) {
+    usersConnection(first: 15, after: $cursor) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        endCursor
+      }
       edges {
+        cursor
         node {
           ... on BDCOperator {
             email
