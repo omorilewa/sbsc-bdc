@@ -54,7 +54,9 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  if (rawData.usersConnection !== null || rawData.usersConnection !== undefined) {
+  const conditionsSatisfied = rawData.usersConnection.edges !== undefined &&
+  Array.isArray(rawData.usersConnection.edges) && rawData.usersConnection.edges !== [];
+  if (conditionsSatisfied) {
     const rawDataCopy = rawData.usersConnection.edges.slice() || [];
     return rawDataCopy.reduce((acc, curr, index) => {
       const accItem = {
@@ -68,7 +70,7 @@ export const transformUsers = (rawData) => {
       return acc;
     }, [])
   }
-  return null;
+  return [];
 }
 
 export const locationId = (data, location) => {
