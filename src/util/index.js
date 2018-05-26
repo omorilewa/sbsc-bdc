@@ -7,10 +7,10 @@ export {
   clearStorage
 } from './asyncStorageUtils';
 export { default as store } from './store';
+export { default as fragmentMatcher } from './fragmentTypes';
 export { default as client } from './client'
 export { prevRates } from './rates';
 export { number, required, emailValidate } from './validation';
-export { default as introspectionQueryResultData } from './fragmentTypes';
 export {
   ADD_BDC_RATE,
   AUTHENTICATE_USER,
