@@ -54,7 +54,7 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  const conditionsSatisfied = rawData.usersConnection.edges !== undefined &&
+  const conditionsSatisfied = rawData.usersConnection !== undefined &&
   Array.isArray(rawData.usersConnection.edges) && rawData.usersConnection.edges !== [];
   if (conditionsSatisfied) {
     const rawDataCopy = rawData.usersConnection.edges.slice() || [];
@@ -70,7 +70,7 @@ export const transformUsers = (rawData) => {
       return acc;
     }, [])
   }
-  return [];
+  return;
 }
 
 export const locationId = (data, location) => {
