@@ -14,7 +14,13 @@ import { Field, reduxForm } from "redux-form";
 import { LineInput, StyledText as Text } from ".";
 import { UserStyles as styles } from '../styles';
 import Loader from "./Loader";
-import { required, emailValidate, CREATE_BDC_OPERATOR, locationId } from '../util';
+import {
+  CREATE_BDC_OPERATOR,
+  emailValidate,
+  FETCH_USERS,
+  locationId,
+  required,
+} from '../util';
 import Modal from 'react-native-modal';
 
 const window = Dimensions.get('window');
@@ -389,6 +395,7 @@ class CreateUserForm extends Component {
                             onPress={() =>
                               newBDCOperator({
                                 variables: { firstName, username, lastName, email, password, phoneNumber, locationId },
+                                refetchQueries: [{ query: FETCH_USERS }]
                               })
                             }
                           >

@@ -19,7 +19,10 @@ class ManageUsersPage extends PureComponent {
           if(error) {
             return <ErrorComponent errorText="Error while fetching users" />;
           }
-          return <ManageUsers usersData={transformUsers(data)} />;
+          if(data) {
+            const transformedUsers = transformUsers(data);
+            return <ManageUsers usersData={transformedUsers} />;
+          }
         }}
       </Query>
     );
