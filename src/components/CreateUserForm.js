@@ -20,6 +20,7 @@ import {
   FETCH_USERS,
   locationId,
   required,
+  number,
 } from '../util';
 import Modal from 'react-native-modal';
 
@@ -248,7 +249,8 @@ class CreateUserForm extends Component {
                 name="phoneNumber"
                 style={styles.inputField}
                 component={LineInput}
-                validate={[required]}
+                keyboardType="numeric"
+                validate={[required, number]}
               />
             </View>
             <View style={styles.fieldView}>
