@@ -46,6 +46,7 @@ class CreateUserForm extends Component {
     showLocation: false,
     username: '',
     password: '',
+    passwordError: false,
     visibleHeight: window.height,
 
   }
@@ -65,7 +66,8 @@ class CreateUserForm extends Component {
     const newSize = window.height - (e.endCoordinates.height * 1.6);
     this.setState((state) => ({
       visibleHeight: newSize,
-      scrollify: true
+      scrollify: true,
+      passwordError: false
     }));
   }
 
@@ -122,10 +124,15 @@ class CreateUserForm extends Component {
       email,
       username,
       phoneNumber,
-      password
+      password,
+      confirmPassword
     } = value;
-
     const { selectedRole, selectedLocation } = this.state;
+
+    this.setState(() => ({
+      passwordError: false,
+    }))
+
     if (selectedRole === '') {
       this.setState(() => ({
         roleSelectError: true,
@@ -135,6 +142,12 @@ class CreateUserForm extends Component {
     if (selectedLocation === '') {
       this.setState(() => ({
         locationSelectError: true,
+      }))
+      return;
+    }
+    if (password !== confirmPassword) {
+      this.setState(() => ({
+        passwordError: true,
       }))
       return;
     }
@@ -185,6 +198,7 @@ class CreateUserForm extends Component {
         showLocation,
         username,
         visibleHeight,
+        passwordError,
         phoneNumber,
         locationId,
         password
@@ -255,15 +269,17 @@ class CreateUserForm extends Component {
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
               <View style={styles.passwordField}>
                 <Label style={styles.formLabel}>Confirm Password: </Label>
                 <Field
-                  name="confirm-password"
+                  name="confirmPassword"
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
             </View>
@@ -329,6 +345,7 @@ class CreateUserForm extends Component {
                 {locationSelectError && <Text style={styles.errorMsg}>Please select a location</Text>}
               </View>
             </View>}
+            {passwordError && <Text style={styles.errorMsg}>Passwords do not match</Text>}
             <TouchableHighlight
               underlayColor="#19B01D"
               style={styles.buttonBody}
