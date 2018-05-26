@@ -28,7 +28,6 @@ class ManageUsers extends PureComponent {
         <UsersTableHeader />
         <FlatList
           data={usersData}
-          onEndReachedThreshold={0.5}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item, index}) => (
             <View
