@@ -383,11 +383,11 @@ class CreateUserForm extends Component {
                       <Text style={styles.button2}>CANCEL</Text>
                     </TouchableHighlight>
                     <Mutation mutation={CREATE_BDC_OPERATOR} onError={this.showError} onCompleted={this.clearForm}>
-                      {(newBDCoperator, { data, loading, error }) => (
+                      {(newBDCOperator, { data, loading, error }) => (
                         <View>
                           <TouchableHighlight disabled={disabled} underlayColor="white"
                             onPress={() =>
-                              newBDCoperator({
+                              newBDCOperator({
                                 variables: { firstName, username, lastName, email, password, phoneNumber, locationId },
                               })
                             }
