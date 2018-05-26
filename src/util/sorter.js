@@ -50,11 +50,7 @@ export const loadImage = (curr) => {
 }
 
 export const sortLocation = (data) => {
-  const locations = data.reduce((acc, curr) => {
-    acc.push(curr.name);
-    return acc;
-  }, [])
-  return locations;
+  return data.map(datum => datum.name);
 }
 
 export const transformUsers = (rawData) => {
