@@ -54,15 +54,15 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  const mappedToNode = rawData.usersConnection.edges.map(item => item.node);
-  const reversedNode = mappedToNode.reverse();
-  return reversedNode.reduce((acc, curr, index) => {
+  const rawDataCopy = rawData.usersConnection.edges.slice();
+  return rawDataCopy.reverse().reduce((acc, curr, index) => {
     const accItem = {
       id: index + 1,
-      name: curr.name,
-      username: curr.username,
-      role: curr.__typename.slice(3),
-      status: 'Inactive'
+      name: curr.node.name,
+      username: curr.node.username,
+      role: curr.node.__typename.slice(3),
+      status: 'Inactive',
+      cursor: curr.cursor
     }
     acc = acc.concat(accItem) || [];
     return acc;
