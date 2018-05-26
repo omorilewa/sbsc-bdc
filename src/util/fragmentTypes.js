@@ -1,6 +1,6 @@
 import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
-const fm = new IntrospectionFragmentMatcher({
+const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
   "__schema": {
     "types": [
@@ -42,4 +42,4 @@ const fm = new IntrospectionFragmentMatcher({
 }
 });
 
-export default fm;
+export default fragmentMatcher;
