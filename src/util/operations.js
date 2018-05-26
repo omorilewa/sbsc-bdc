@@ -24,7 +24,7 @@ export const GET_LOCATION = gql`
 `;
 
 export const CREATE_BDC_OPERATOR = gql`
-  mutation newbdcoperator($email: String!,
+  mutation newBDCoperator($email: String!,
     $username: String!,
     $password: String!,
     $firstName: String!,
