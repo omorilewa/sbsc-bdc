@@ -4,8 +4,7 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
-import { getItem } from '.';
-
+import { getItem, fragmentMatcher } from '.';
 
 const uri = 'https://bdc-api.herokuapp.com/api/graphql';
 
@@ -39,7 +38,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const link = ApolloLink.from([authLink, errorLink, httpLink]);
-const cache = new InMemoryCache();
+
+const cache = new InMemoryCache({ fragmentMatcher });
 
 const client = new ApolloClient({
   link,

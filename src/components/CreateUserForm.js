@@ -14,7 +14,13 @@ import { Field, reduxForm } from "redux-form";
 import { LineInput, StyledText as Text } from ".";
 import { UserStyles as styles } from '../styles';
 import Loader from "./Loader";
-import { required, emailValidate, CREATE_BDC_OPERATOR, locationId } from '../util';
+import {
+  CREATE_BDC_OPERATOR,
+  emailValidate,
+  FETCH_USERS,
+  locationId,
+  required,
+} from '../util';
 import Modal from 'react-native-modal';
 
 const window = Dimensions.get('window');
@@ -383,12 +389,13 @@ class CreateUserForm extends Component {
                       <Text style={styles.button2}>CANCEL</Text>
                     </TouchableHighlight>
                     <Mutation mutation={CREATE_BDC_OPERATOR} onError={this.showError} onCompleted={this.clearForm}>
-                      {(newBDCRate, { data, loading, error }) => (
+                      {(newBDCOperator, { data, loading, error }) => (
                         <View>
                           <TouchableHighlight disabled={disabled} underlayColor="white"
                             onPress={() =>
-                              newBDCRate({
+                              newBDCOperator({
                                 variables: { firstName, username, lastName, email, password, phoneNumber, locationId },
+                                refetchQueries: [{ query: FETCH_USERS }]
                               })
                             }
                           >

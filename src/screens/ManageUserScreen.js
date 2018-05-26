@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import {
   TabNavigator,
-  ManageUsers,
+  ManageUsersPage,
   CreateUserPage,
   SuperHeader,
 } from '../components';
@@ -21,7 +21,7 @@ class ManageUserScreen extends Component {
           <TabNavigator
             initialRouteName={'TabOne'}
             screenOne={CreateUserPage}
-            screenTwo={ManageUsers}
+            screenTwo={ManageUsersPage}
           />
         </View>
       </View>

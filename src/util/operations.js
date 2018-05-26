@@ -24,28 +24,28 @@ export const GET_LOCATION = gql`
 `;
 
 export const CREATE_BDC_OPERATOR = gql`
-mutation newbdcoperator($email: String!,
-  $username: String!,
-  $password: String!,
-  $firstName: String!,
-  $lastName: String!,
-  $locationId: String!,
-  $phoneNumber: String!) {
-  createBDCOperator(data: {
-    email: $email,
-    username: $username,
-    password: $password,
-    firstName: $firstName,
-    lastName: $lastName,
-    locationId: $locationId,
-    phoneNumber: $phoneNumber
-  }) {
-    name
-    location {
+  mutation newBDCoperator($email: String!,
+    $username: String!,
+    $password: String!,
+    $firstName: String!,
+    $lastName: String!,
+    $locationId: String!,
+    $phoneNumber: String!) {
+    createBDCOperator(data: {
+      email: $email,
+      username: $username,
+      password: $password,
+      firstName: $firstName,
+      lastName: $lastName,
+      locationId: $locationId,
+      phoneNumber: $phoneNumber
+    }) {
       name
+      location {
+        name
+      }
     }
   }
-}
 `;
 
 export const PREV_RATES = gql`
@@ -98,6 +98,31 @@ export const ADD_BDC_RATE = gql`
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+
+export const FETCH_USERS = gql`
+  query users($cursor: ID) {
+    usersConnection(first: 15, after: $cursor) {
+      pageInfo {
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          ... on BDCOperator {
+            email
+            username
+            name
+          }
+          ... on BDCAdmin {
+            email
+            username
+            name
+          }
+        }
+      }
     }
   }
 `;

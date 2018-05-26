@@ -11,14 +11,14 @@ class UserListItem extends Component {
 
   static propTypes = {
     id: number,
-    Name: string,
-    Username: string,
-    Role: string,
-    Status: string,
+    name: string,
+    username: string,
+    role: string,
+    status: string,
   }
 
   state = {
-    isActive: this.props.Status === "Active" ? true : false,
+    isActive: this.props.status === "Active" ? true : false,
     statusText: '',
     actionButtonText: ''
   }
@@ -56,7 +56,7 @@ class UserListItem extends Component {
     const {
       toggleActiveStatus,
       state: { isActive, statusText, actionButtonText },
-      props: { id, Name, Username, Role }
+      props: { id, name, username, role }
     } = this;
 
     return (
@@ -65,13 +65,13 @@ class UserListItem extends Component {
           <Text style={styles.listItem}>{id}</Text>
         </View>
         <View style={[styles.noGaps, styles.nameColumn]}>
-          <Text style={styles.listItem}>{Name}</Text>
+          <Text style={styles.listItem}>{name}</Text>
         </View>
         <View style={[styles.noGaps, styles.usernameColumn]}>
-          <Text style={styles.listItem}>{Username}</Text>
+          <Text style={styles.listItem}>{username}</Text>
         </View>
         <View style={[styles.noGaps, styles.status]}>
-          <Text style={styles.listItem}>{Role}</Text>
+          <Text style={styles.listItem}>{role}</Text>
         </View>
         <View style={styles.noGaps}>
           <Text style={styles.listItem}>{statusText}</Text>

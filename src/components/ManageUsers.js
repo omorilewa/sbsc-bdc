@@ -1,37 +1,74 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, { PureComponent } from 'react';
+import { View, FlatList } from 'react-native';
 import { UsersTableHeader, UserListItem } from '.';
-import { allUsers } from '../util';
 import { UserListStyles as styles } from '../styles';
 
-class ManageUsers extends Component {
-  static navigationOptions = {
-    title: 'MANAGE USERS',
+class ManageUsers extends PureComponent {
+  state = {
+    usersData: this.props.usersData,
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.usersData !== prevState.usersData) {
+      return {
+        usersData: nextProps.usersData,
+      };
+    }
+    return null;
   }
 
   render() {
+    const {
+      state: { usersData },
+      props: { fetchMore, endCursor }
+    } = this;
+
     return (
-      <View>
+      <View style={styles.outerView}>
         <UsersTableHeader />
-          {allUsers.map((item, index) => (
-          <View
-            key={index}
-            style={(index % 2 === 0) ?
-              styles.usersView :
-              [styles.usersView, styles.listBGColor]}>
-              <UserListItem
-                id={item["#"]}
-                Name={item.Name}
-                Username={item.Username}
-                Role={item.Role}
-                Status={item.Status}
-                key={index}/>
+        <FlatList
+          data={usersData}
+          onEndReachedThreshold={0.5}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item, index}) => (
+            <View
+              key={index}
+              style={(index % 2 === 0) ?
+                styles.usersView :
+                [styles.usersView, styles.listBGColor]}>
+                <UserListItem
+                  id={item.id}
+                  name={item.name}
+                  username={item.username}
+                  role={item.role}
+                  status={item.status}
+                  key={index}
+                />
             </View>
-          ))}
+          )}
+          onEndReached={() => {
+            fetchMore({
+              variables: { cursor: endCursor },
+              updateQuery: (previousResult, { fetchMoreResult }) => {
+                const { edges: newEdges, pageInfo } = fetchMoreResult.usersConnection;
+
+                return newEdges.length
+                  ? {
+                      usersConnection: {
+                        __typename: previousResult.usersConnection.__typename,
+                        pageInfo,
+                        edges: [...previousResult.usersConnection.edges, ...newEdges],
+                      }
+                    }
+                  : previousResult;
+              }
+            });
+          }}
+        />
       </View>
     );
   }
-}
+};
 
 export default ManageUsers;
 

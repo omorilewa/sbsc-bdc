@@ -17,7 +17,7 @@ class CreateUserPage extends Component {
   render() {
     return (
       <Query query={GET_LOCATION}>
-      {({ loading, error, data, fetchMore }) => {
+      {({ loading, error, data }) => {
         if (loading) return (
           <View style={styles.modalBackground}>
             <View style={styles.spinner}>

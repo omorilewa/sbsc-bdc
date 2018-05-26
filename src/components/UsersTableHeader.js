@@ -14,13 +14,13 @@ const UsersTableHeader = () => (
     <View style={[styles.noGaps, styles.usernameColumn]}>
       <Text style={styles.headerText}>Username</Text>
     </View>
-    <View style={styles.noGaps}>
+    <View style={[styles.noGaps, styles.actionView]}>
       <Text style={styles.headerText}>Role</Text>
     </View>
-    <View style={styles.noGaps}>
+    <View style={[styles.noGaps, styles.actionView]}>
       <Text style={styles.headerText}>Status</Text>
     </View>
-    <View style={styles.noGaps}>
+    <View style={[styles.noGaps, styles.actionView]}>
       <Text style={styles.headerText}>Action</Text>
     </View>
   </View>
