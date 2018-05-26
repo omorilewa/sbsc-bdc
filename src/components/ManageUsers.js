@@ -18,7 +18,10 @@ class ManageUsers extends Component {
   }
 
   render() {
-    const { usersData } = this.state;
+    const {
+      state: { usersData },
+      props: { fetchMore, endCursor, hasNextPage }
+    } = this;
 
     return (
       <View>
@@ -42,6 +45,24 @@ class ManageUsers extends Component {
                   key={index}/>
             </View>
           )}
+          onEndReached={() => {
+            fetchMore({
+              variables: { cursor: endCursor },
+              updateQuery: (previousResult, { fetchMoreResult }) => {
+                const { edges: newEdges, pageInfo } = fetchMoreResult.usersConnection;
+
+                return newEdges.length && hasNextPage
+                  ? {
+                      usersConnection: {
+                        __typename: previousResult.usersConnection.__typename,
+                        pageInfo,
+                        edges: [...previousResult.usersConnection.edges, ...newEdges],
+                      }
+                    }
+                  : previousResult;
+              }
+            });
+          }}
         />
       </View>
     );
