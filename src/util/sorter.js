@@ -54,7 +54,7 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  if (rawData) {
+  if (rawData.usersConnection !== null || rawData.usersConnection !== undefined) {
     const rawDataCopy = rawData.usersConnection.edges.slice() || [];
     return rawDataCopy.reduce((acc, curr, index) => {
       const accItem = {
