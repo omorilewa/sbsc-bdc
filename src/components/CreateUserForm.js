@@ -302,7 +302,7 @@ class CreateUserForm extends Component {
                         dropdownTextStyle={styles.dropdowntext}
                         adjustFrame={(style) => {
                           style.height = 68;
-                          style.top = 438;
+                          style.top = 468;
                           return style;
                         }}
                         onSelect={(index, value) => { this.onClickDropDown(value) }}
@@ -333,7 +333,7 @@ class CreateUserForm extends Component {
                         dropdownTextStyle={styles.dropdowntext}
                         adjustFrame={(style) => {
                           style.height = 98;
-                          style.top = 495;
+                          style.top = 525;
                           return style;
                         }}
                         onSelect={(index, value) => { this.onClickLocationDropDown(value) }}
