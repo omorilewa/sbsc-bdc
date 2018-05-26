@@ -59,7 +59,8 @@ export const sortLocation = (data) => {
 
 export const transformUsers = (rawData) => {
   const mappedToNode = rawData.usersConnection.edges.map(item => item.node);
-  return mappedToNode.reduce((acc, curr, index) => {
+  const reversedNode = mappedToNode.reverse();
+  return reversedNode.reduce((acc, curr, index) => {
     const accItem = {
       id: index + 1,
       name: curr.name,
