@@ -20,7 +20,7 @@ class ManageUsers extends Component {
   render() {
     const {
       state: { usersData },
-      props: { fetchMore, endCursor, hasNextPage }
+      props: { fetchMore, endCursor }
     } = this;
 
     return (
@@ -51,7 +51,7 @@ class ManageUsers extends Component {
               updateQuery: (previousResult, { fetchMoreResult }) => {
                 const { edges: newEdges, pageInfo } = fetchMoreResult.usersConnection;
 
-                return newEdges.length && hasNextPage
+                return newEdges.length
                   ? {
                       usersConnection: {
                         __typename: previousResult.usersConnection.__typename,

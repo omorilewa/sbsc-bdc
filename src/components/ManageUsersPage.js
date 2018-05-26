@@ -25,7 +25,6 @@ class ManageUsersPage extends PureComponent {
                 usersData={transformedUsers}
                 fetchMore={fetchMore}
                 endCursor={data.usersConnection.pageInfo.endCursor}
-                hasNextPage={data.usersConnection.pageInfo.hasNextPage}
               />
             );
           }
