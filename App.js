@@ -10,6 +10,7 @@ import {
   View,
   StatusBar,
 } from 'react-native';
+import codePush from "react-native-code-push";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 import { Sentry } from 'react-native-sentry';
@@ -30,7 +31,7 @@ Sentry.config('https://c9d63a6d35ca4c2bac30a2b979f5d68e:a42fa9660e7f472caa041e7d
 // });
 
 type Props = {};
-export default class App extends Component<Props> {
+class App extends Component<Props> {
   render() {
     return (
       <ApolloProvider client={client}>
@@ -46,6 +47,8 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+export default codePush(App);
 
 const styles = StyleSheet.create({
   container: {
