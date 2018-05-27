@@ -27,6 +27,7 @@
     "react-native": "0.55.4",
     "react-native-modal": "^6.0.0",
     "react-native-modal-dropdown": "^0.6.2",
+    "react-native-sentry": "^0.37.0",
     "react-navigation": "1.5.11",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

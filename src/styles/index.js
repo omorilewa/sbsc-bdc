@@ -677,7 +677,7 @@ export const FAQStyles = StyleSheet.create({
     width: '90%'
   },
   subText: {
-    fontSize: 9,
+    fontSize: 12,
     fontFamily: "montserrat",
     color: 'white',
     marginTop: 5,
@@ -959,9 +959,9 @@ export const UserStyles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
-    fontSize: 10,
-    height: 15,
-    marginTop: 3,
+    fontSize: 12,
+    height: 18,
+    marginTop: 6,
     fontFamily: 'montserrat',
   },
   passwordField: {

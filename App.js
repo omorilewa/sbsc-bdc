@@ -12,16 +12,15 @@ import {
 } from 'react-native';
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
-// import { Ionicons } from "@expo/vector-icons";
-// import Sentry from 'sentry-expo';
+import { Sentry } from 'react-native-sentry';
 import { AppProvider } from './src/components';
 import { PrimaryNavigator } from "./src/navigation";
 import { store, client } from "./src/util";
 console.disableYellowBox = true;
-// import registerForPushNotificationsAsync from './src/api/registerForPushNotificationsAsync';
-// import Montserrat from './src/assets/fonts/montserrat.regular.ttf';
-// import MontserratB from './src/assets/fonts/montserrat.bold.ttf';
-// import MontserratL from './src/assets/fonts/Montserrat-Light.ttf';
+
+
+Sentry.config('https://c9d63a6d35ca4c2bac30a2b979f5d68e:a42fa9660e7f472caa041e7d9db8ee49@sentry.io/1206436').install();
+
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' +
