@@ -716,7 +716,7 @@ export const FAQStyles = StyleSheet.create({
     height: 40
   },
   faqText: {
-    fontFamily: "monteserrat-light",
+    fontFamily: "montserrat-light",
     fontSize: 17,
     color: '#c3c3c3',
   },
@@ -899,7 +899,7 @@ export const UserStyles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 12,
-    fontFamily: 'monteserrat-light',
+    fontFamily: 'montserrat-light',
   },
   dropdown: {
     width: '45%',
@@ -908,12 +908,12 @@ export const UserStyles = StyleSheet.create({
     flexDirection:'row'
   },
   dropdowntext: {
-    fontFamily: "monteserrat-light",
+    fontFamily: "montserrat-light",
     fontSize: 9,
   },
   formLabel: {
     fontSize: 12,
-    fontFamily: "monteserrat-light",
+    fontFamily: "montserrat-light",
     color: '#000000',
     marginTop: 8,
     paddingBottom: 0,
@@ -995,7 +995,7 @@ export const UserStyles = StyleSheet.create({
 export const UserListStyles = StyleSheet.create({
   listItem: {
     fontSize: 11,
-    fontFamily: "monteserrat-light",
+    fontFamily: "montserrat-light",
   },
   outerView: {
     flex: 1
