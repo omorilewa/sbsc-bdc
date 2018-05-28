@@ -26,13 +26,13 @@ class PrevRate extends Component {
 
   setLocalTime = (element) => {
     let time = '';
-    if (element.morning.length > 0) {
+    if (!!element.morning && element.morning.length > 0) {
       time = moment(element.morning[0].createdAt).subtract(120, 'minutes')
     }
-    else if (element.afternoon.length > 0) {
+    else if (!!element.afternoon && element.afternoon.length > 0) {
       time = moment(element.afternoon[0].createdAt).subtract(120, 'minutes')
     }
-    else if (element.evening.length > 0) {
+    else if (!!element.evening && element.evening.length > 0) {
       time = moment(element.evening[0].createdAt).subtract(120, 'minutes')
     }
     return time;
