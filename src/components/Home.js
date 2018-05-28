@@ -88,7 +88,8 @@ class Home extends PureComponent {
                     return (
                       <View style={styles.buttonView}>
                         <Button
-                          block rounded
+                          block
+                          rounded
                           style={styles.getStartedButton}
                           onPress={handleSubmit(async (values) => {
                             const { password } = values;

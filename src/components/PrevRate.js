@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { array } from "prop-types";
 import { View, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -6,16 +6,23 @@ import moment from 'moment';
 import { StyledText as Text, RatesByPeriod } from ".";
 import { PrevRateStyles as styles } from "../styles";
 
-class PrevRate extends Component {
+class PrevRate extends PureComponent {
   static propTypes = {
     prevRateData: array.isRequired
   }
 
   state = {
     prevRateData: this.props.prevRateData,
+    isFiltering: false,
+  }
+
+  componentDidMount() {
+    console.log('IT REALLY INDEED MOUNTED');
+    this.filterData(this.props.prevRateData, 'This month');
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('MAMA MARIAM');
     if (nextProps.prevRateData !== prevState.prevRateData) {
       return {
         prevRateData: nextProps.prevRateData,
@@ -24,52 +31,49 @@ class PrevRate extends Component {
     return null;
   }
 
-  setLocalTime = (element) => {
-    let time = '';
-    if (!!element.morning && element.morning.length > 0) {
-      time = moment(element.morning[0].createdAt).subtract(120, 'minutes')
-    }
-    else if (!!element.afternoon && element.afternoon.length > 0) {
-      time = moment(element.afternoon[0].createdAt).subtract(120, 'minutes')
-    }
-    else if (!!element.evening && element.evening.length > 0) {
-      time = moment(element.evening[0].createdAt).subtract(120, 'minutes')
-    }
-    return time;
-  }
-
   filterData = (initial, filterBy) => {
     let result;
     switch (filterBy) {
       case ('Today'):
         result = initial.filter((element) => {
-          return moment().isSame(this.setLocalTime(element), 'day')
+          return moment().isSame((element.date), 'day') && element;
         });
         break;
       case ('This week'):
         result = initial.filter(element => {
-          return this.setLocalTime(element) <= moment().endOf('week')
+          const isThisWeek = element.date >= moment().startOf('week').format('YYYY-MM-DD') &&
+            element.date <= moment().endOf('week').format('YYYY-MM-DD');
+          return isThisWeek && element;
         });
         break;
       case ('This month'):
-      default:
         result = initial.filter(element => {
-          return this.setLocalTime(element) <= moment().endOf('month')
+          const isThisMonth = element.date >= moment().startOf('month').format('YYYY-MM-DD') &&
+            element.date <= moment().endOf('month').format('YYYY-MM-DD');
+          return isThisMonth && element;
         });
+        break;
+      default:
+        result = initial;
         break;
     }
     return result;
   };
 
   onClickDropDown = (value) => {
+    let isFiltering = true
+    if(value === 'All data') {
+      isFiltering = false
+    }
     this.setState(() => ({
+      isFiltering,
       prevRateData: this.filterData(this.props.prevRateData, value)
     }))
   }
 
   render() {
     const { prevRateData } = this.state;
-    const { fetchMore, endCursor, hasNextPage} = this.props;
+    const { fetchMore, endCursor } = this.props;
     return (
       <ScrollView>
         <View style={styles.wrapper} >
@@ -77,8 +81,8 @@ class PrevRate extends Component {
           <TouchableOpacity onPress={() => { this.dropDown && this.dropDown.show(); }}>
             <View style={styles.modalView}>
               <ModalDropdown ref={(el) => { this.dropDown = el }}
-                options={["This week", "Today", "This month"]}
-                defaultValue={"This month"}
+                options={["All data", "This week", "Today", "This month"]}
+                defaultValue={"All data"}
                 style={styles.modal}
                 textStyle={styles.buttonText}
                 dropdownStyle={styles.dropdown}
@@ -98,31 +102,32 @@ class PrevRate extends Component {
         <View>
           <FlatList
             data={prevRateData}
-            onEndReachedThreshold={0.5}
             keyExtractor={(item, index) => index.toString()}
             onEndReached={() => {
-              fetchMore({
-                variables: { cursor: endCursor },
-                updateQuery: (previousResult, { fetchMoreResult }) => {
-                  const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
-
-                  return newEdges.length && hasNextPage
-                    ? {
-                        viewer: {
-                          __typename: previousResult.viewer.__typename,
-                          user: {
-                            __typename: previousResult.viewer.user.__typename,
-                            previousRatesConnection: {
-                              __typename: previousResult.viewer.user.previousRatesConnection.__typename,
-                              edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
-                              pageInfo
+              if(!this.state.isFiltering) {
+                fetchMore({
+                  variables: { cursor: endCursor },
+                  updateQuery: (previousResult, { fetchMoreResult }) => {
+                    const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
+                    console.log('fetching...')
+                    return newEdges.length
+                      ? {
+                          viewer: {
+                            __typename: previousResult.viewer.__typename,
+                            user: {
+                              __typename: previousResult.viewer.user.__typename,
+                              previousRatesConnection: {
+                                __typename: previousResult.viewer.user.previousRatesConnection.__typename,
+                                edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
+                                pageInfo
+                              }
                             }
                           }
                         }
-                      }
-                    : previousResult;
-                }
-              });
+                      : previousResult;
+                  }
+                });
+              }
             }}
             renderItem={({ item, index }) =>
               <View key={index} style={index % 2 === 0 ? styles.body : [styles.body, styles.bg]}>
