@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
 import { func } from "prop-types";
 import { View } from "react-native";
-import { Label } from "native-base";
+import { Label, Button } from "native-base";
 import { Field } from "redux-form";
 import {
   LineInput,
-  StyledButton as Button,
   StyledText as Text,
   PeriodPicker,
 } from ".";

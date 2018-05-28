@@ -4,6 +4,7 @@ import {
   ImageBackground,
   Image
 } from "react-native";
+import { Button } from 'native-base';
 import { func, bool, number, string } from "prop-types";
 import { Field } from "redux-form";
 import { Mutation } from 'react-apollo';
@@ -11,7 +12,6 @@ import { HomeScreenStyles as styles } from "../styles";
 import RenderInput from "../components/RenderInput";
 import {
   StyledText as Text,
-  StyledButton as Button,
   AppConsumer,
 } from ".";
 import Loader from "./Loader";
@@ -88,9 +88,12 @@ class Home extends PureComponent {
                     return (
                       <View style={styles.buttonView}>
                         <Button
-                          block rounded default color="#50AE32" height={60}
+                          block rounded
+                          style={styles.getStartedButton}
                           onPress={handleSubmit(async (values) => {
-                            const { username, password } = values;
+                            const { password } = values;
+                            let { username } = values;
+                            username = username.toLowerCase();
                             removeItem('token');
                             removeErrorText();
                             changeUsername(username);

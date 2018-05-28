@@ -8,6 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import { Label, Item } from "native-base";
+import _ from 'lodash';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Mutation } from 'react-apollo';
 import { Field, reduxForm } from "redux-form";
@@ -171,12 +172,9 @@ class CreateUserForm extends Component {
     const {
       props: { disabled, handleSubmit },
       state: {
-        email,
         errorText,
         errored,
-        firstName,
         isVisible,
-        lastName,
         location,
         locationSelectError,
         roleSelectError,
@@ -184,13 +182,17 @@ class CreateUserForm extends Component {
         selectedRole,
         scrollify,
         showLocation,
-        username,
         visibleHeight,
         phoneNumber,
         locationId,
         password
       },
     } = this;
+
+    const firstName = _.startCase(_.toLower(this.state.firstName));
+    const lastName = _.startCase(_.toLower(this.state.lastName));
+    const username = _.toLower(this.state.username);
+    const email = _.toLower(this.state.email);
 
     return (
       <View style={{ height: visibleHeight }}>
