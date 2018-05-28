@@ -16,12 +16,12 @@ class SideMenuItemWrapper extends PureComponent {
     return (
       <Fragment>
         {isIos &&
-          <TouchableOpacity>
+          <TouchableOpacity {...this.props}>
             {this.props.children}
           </TouchableOpacity>
         }
         {!isIos &&
-          <TouchableNativeFeedback>
+          <TouchableNativeFeedback {...this.props}>
             {this.props.children}
           </TouchableNativeFeedback>
         }
