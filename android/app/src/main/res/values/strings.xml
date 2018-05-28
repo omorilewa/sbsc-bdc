@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">J7u7RKHJgvtM1DyDCKj7WQUiwv0952cfa385-6d42-459f-8a01-f79a355f7f0b</string>
     <string name="app_name">bdc</string>
 </resources>
