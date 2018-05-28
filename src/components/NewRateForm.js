@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { func } from "prop-types";
 import {
   View,
-  TouchableNativeFeedback,
   Dimensions,
   Keyboard,
   ScrollView
@@ -16,7 +15,8 @@ import Loader from "./Loader";
 import {
   LineInput,
   StyledButton as Button,
-  StyledText as Text
+  StyledText as Text,
+  SideMenuItemWrapper,
 } from ".";
 import { NewRateStyles as styles } from "../styles";
 import { required, number } from '../util';
@@ -203,18 +203,18 @@ class NewRateForm extends Component {
                     {!!errored && <Text style={styles.errorText}>{errorText}</Text>}
                   </View>
                   <View style={styles.close}>
-                    <TouchableNativeFeedback
+                    <SideMenuItemWrapper
                       onPress={() => {
                         reset()
                         this.setState({ isVisible: false, errored: false })
                       }}
                       underlayColor="white">
                       <Text style={styles.button2}>CANCEL</Text>
-                    </TouchableNativeFeedback>
+                    </SideMenuItemWrapper>
                     <Mutation mutation={ADD_BDC_RATE} onError={this.showError} onCompleted={this.clearForm}>
                       {(newBDCRate, { data, loading, error }) => (
                         <Fragment>
-                          <TouchableNativeFeedback disabled={disabled} underlayColor="white"
+                          <SideMenuItemWrapper disabled={disabled} underlayColor="white"
                             onPress={() =>
                               newBDCRate({
                                 variables: { buyRate, sellRate, currency: selected },
@@ -222,7 +222,7 @@ class NewRateForm extends Component {
                               })
                             }>
                             <Text style={styles.button1}>CONTINUE</Text>
-                          </TouchableNativeFeedback>
+                          </SideMenuItemWrapper>
                           {loading && <Loader loading={loading} />}
                         </Fragment>
                       )}
