@@ -221,7 +221,7 @@ class CreateUserForm extends Component {
               </View>
             </View>
             <View style={styles.fieldView}>
-              <Label style={styles.formLabel}>username: </Label>
+              <Label style={styles.formLabel}>Username: </Label>
               <Field
                 name="username"
                 style={styles.inputField}
