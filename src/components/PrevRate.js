@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { array } from "prop-types";
 import { View, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -17,12 +17,10 @@ class PrevRate extends PureComponent {
   }
 
   componentDidMount() {
-    console.log('IT REALLY INDEED MOUNTED');
     this.filterData(this.props.prevRateData, 'This month');
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('MAMA MARIAM');
     if (nextProps.prevRateData !== prevState.prevRateData) {
       return {
         prevRateData: nextProps.prevRateData,
