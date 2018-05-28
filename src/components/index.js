@@ -1,6 +1,5 @@
 export { AppContext, AppProvider, AppConsumer } from './AppProvider';
 export { StyledText } from './StyledText';
-export { StyledButton } from './StyledButton';
 export { default as RenderInput } from './RenderInput';
 export { default as LineInput } from './LineInput';
 export { default as ErrorComponent } from './ErrorComponent';

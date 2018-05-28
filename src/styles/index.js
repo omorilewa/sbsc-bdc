@@ -125,6 +125,11 @@ export const HomeScreenStyles = StyleSheet.create({
     marginTop: "20%",
     fontFamily: "montserrat-bold",
     fontSize: 14
+  },
+  getStartedButton: {
+    marginTop: '4%',
+    height: 60,
+    backgroundColor: '#50AE32'
   }
 });
 

@@ -6,7 +6,7 @@ import {
   Keyboard,
   ScrollView
 } from "react-native";
-import { Item, Label, Picker } from "native-base";
+import { Item, Label, Picker, Button } from "native-base";
 import { Field } from "redux-form";
 import Modal from 'react-native-modal';
 import { Mutation } from 'react-apollo';
@@ -14,7 +14,6 @@ import { ADD_BDC_RATE, PREV_RATES } from '../util';
 import Loader from "./Loader";
 import {
   LineInput,
-  StyledButton as Button,
   StyledText as Text,
   SideMenuItemWrapper,
 } from ".";
