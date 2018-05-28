@@ -17,7 +17,7 @@ class PrevRate extends PureComponent {
   }
 
   componentDidMount() {
-    this.filterData(this.props.prevRateData, 'This month');
+    this.filterData(this.state.prevRateData, 'All data');
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
