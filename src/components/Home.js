@@ -90,7 +90,9 @@ class Home extends PureComponent {
                         <Button
                           block rounded default color="#50AE32" height={60}
                           onPress={handleSubmit(async (values) => {
-                            const { username, password } = values;
+                            const { password } = values;
+                            let { username } = values;
+                            username = username.toLowerCase();
                             removeItem('token');
                             removeErrorText();
                             changeUsername(username);
