@@ -3,7 +3,6 @@ export { StyledText } from './StyledText';
 export { StyledButton } from './StyledButton';
 export { default as RenderInput } from './RenderInput';
 export { default as LineInput } from './LineInput';
-export { THButton } from './THButton';
 export { default as ErrorComponent } from './ErrorComponent';
 export { default as SideMenuItemWrapper } from './SideMenuItemWrapper';
 export { default as Home } from './Home';
