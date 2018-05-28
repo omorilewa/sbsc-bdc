@@ -4,7 +4,7 @@ import { NewRateForm } from '.';
 
 class NewRatePage extends Component {
   static navigationOptions = {
-    title: "Input new rate"
+    title: "INPUT NEW RATE"
   };
 
   render() {
