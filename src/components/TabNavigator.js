@@ -6,6 +6,7 @@ const Tabnavigator = ({ initialRouteName, screenOne, screenTwo }) => {
     TabOne: { screen: screenOne },
     TabTwo: { screen: screenTwo },
   }, {
+      ...TabNavigator.Presets.AndroidTopTabs,
       tabBarOptions: {
         titleStyle: {
           justifyContent: 'center',
