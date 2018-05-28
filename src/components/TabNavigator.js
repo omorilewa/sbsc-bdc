@@ -14,6 +14,7 @@ const Tabnavigator = ({ initialRouteName, screenOne, screenTwo }) => {
         labelStyle: {
           fontSize: 13,
           fontFamily: 'montserrat',
+          color: 'white',
         },
         tabStyle: {
           justifyContent: 'center',
@@ -26,8 +27,9 @@ const Tabnavigator = ({ initialRouteName, screenOne, screenTwo }) => {
           backgroundColor: '#00b200',
           height: 40,
           paddingBottom: 0,
-        }
+        },
       },
+      tabBarPosition: 'top',
       initialRouteName,
     });
   CustomTabNavigator.navigationOptions = {
