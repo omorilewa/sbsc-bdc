@@ -373,6 +373,9 @@ export const PrevRateStyles = StyleSheet.create({
     paddingBottom: 9,
     paddingLeft: '5%',
   },
+  outerView: {
+    flex: 1
+  },
   main: {
     flexDirection: 'row',
     marginTop: 7

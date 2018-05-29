@@ -73,7 +73,7 @@ class PrevRate extends PureComponent {
     const { prevRateData } = this.state;
     const { fetchMore, endCursor } = this.props;
     return (
-      <ScrollView>
+      <View style={styles.outerview}>
         <View style={styles.wrapper} >
           <Text style={styles.filter}>Filter by: </Text>
           <TouchableOpacity onPress={() => { this.dropDown && this.dropDown.show(); }}>
@@ -97,46 +97,44 @@ class PrevRate extends PureComponent {
             <View style={styles.hr}></View>
           </TouchableOpacity>
         </View>
-        <View>
-          <FlatList
-            data={prevRateData}
-            keyExtractor={(item, index) => index.toString()}
-            onEndReached={() => {
-              if(!this.state.isFiltering) {
-                fetchMore({
-                  variables: { cursor: endCursor },
-                  updateQuery: (previousResult, { fetchMoreResult }) => {
-                    const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
-                    console.log('fetching...')
-                    return newEdges.length
-                      ? {
-                          viewer: {
-                            __typename: previousResult.viewer.__typename,
-                            user: {
-                              __typename: previousResult.viewer.user.__typename,
-                              previousRatesConnection: {
-                                __typename: previousResult.viewer.user.previousRatesConnection.__typename,
-                                edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
-                                pageInfo
+        <FlatList
+              data={prevRateData}
+              keyExtractor={(item, index) => index.toString()}
+              onEndReached={() => {
+                if(!this.state.isFiltering) {
+                  fetchMore({
+                    variables: { cursor: endCursor },
+                    updateQuery: (previousResult, { fetchMoreResult }) => {
+                      const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
+                      console.log('fetching...')
+                      return newEdges.length
+                        ? {
+                            viewer: {
+                              __typename: previousResult.viewer.__typename,
+                              user: {
+                                __typename: previousResult.viewer.user.__typename,
+                                previousRatesConnection: {
+                                  __typename: previousResult.viewer.user.previousRatesConnection.__typename,
+                                  edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
+                                  pageInfo
+                                }
                               }
                             }
                           }
-                        }
-                      : previousResult;
-                  }
-                });
-              }
-            }}
-            renderItem={({ item, index }) =>
-              <View key={index} style={index % 2 === 0 ? styles.body : [styles.body, styles.bg]}>
-                <Text style={styles.day}>{item.date}</Text>
-                <RatesByPeriod rates={item} period="morning" />
-                <RatesByPeriod rates={item} period="afternoon" />
-                <RatesByPeriod rates={item} period="evening" />
-              </View>
-            } />
-        </View>
-      </ScrollView>
+                        : previousResult;
+                    }
+                  });
+                }
+              }}
+              renderItem={({ item, index }) =>
+                <View key={index} style={index % 2 === 0 ? styles.body : [styles.body, styles.bg]}>
+                  <Text style={styles.day}>{item.date}</Text>
+                  <RatesByPeriod rates={item} period="morning" />
+                  <RatesByPeriod rates={item} period="afternoon" />
+                  <RatesByPeriod rates={item} period="evening" />
+                </View>
+              } />
+      </View>
     );
   }
 };
