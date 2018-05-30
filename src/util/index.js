@@ -2,7 +2,6 @@ export {
   setItem,
   getItem,
   multiSetItems,
-  multiRemoveItems,
   removeItem,
   clearStorage
 } from './asyncStorageUtils';
