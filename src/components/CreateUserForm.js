@@ -107,7 +107,7 @@ class CreateUserForm extends Component {
   }
 
   onClickDropDown = (value) => {
-    const extraStateValues = {
+    const extraStateEntries = {
       selectedRole: value,
       showLocation: true,
       roleSelectError: false
@@ -116,13 +116,13 @@ class CreateUserForm extends Component {
     if (value === "Operator") {
       this.setState(() => ({
         isAdmin: false,
-        ...extraStateValues
+        ...extraStateEntries
       }))
     }
     if (value === "Admin") {
       this.setState(() => ({
         isAdmin: true,
-        ...extraStateValues
+        ...extraStateEntries
       }))
     }
   }
