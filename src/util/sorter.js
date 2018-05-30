@@ -61,10 +61,11 @@ export const transformUsers = (rawData) => {
     return rawDataCopy.reduce((acc, curr, index) => {
       const accItem = {
         id: index + 1,
+        userId: curr.node.id,
         name: curr.node.name,
         username: curr.node.username,
         role: curr.node.__typename.slice(3),
-        status: 'Inactive',
+        status: curr.node.active,
       }
       acc = acc.concat(accItem) || [];
       return acc;

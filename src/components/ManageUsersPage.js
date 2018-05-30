@@ -1,7 +1,12 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { ManageUsers, ErrorComponent, Loader } from '.';
+import {
+  View,
+  ActivityIndicator,
+} from 'react-native';
+import { ManageUsers, ErrorComponent } from '.';
 import { transformUsers, FETCH_USERS } from '../util';
+import { UserStyles as styles } from '../styles';
 
 class ManageUsersPage extends PureComponent {
   static navigationOptions = {
@@ -12,13 +17,21 @@ class ManageUsersPage extends PureComponent {
     return (
       <Query query={FETCH_USERS}>
         {({ loading, error, data, fetchMore }) => {
-          if(loading) {
-            return <Loader loading={loading} />;
+          if (loading) {
+            return (
+              <View style={styles.modalBackground}>
+                <View style={styles.spinner}>
+                  <ActivityIndicator
+                    size="large"
+                    color="#9c9e9f" />
+                </View>
+              </View>
+            )
           }
-          if(error) {
+          if (error) {
             return <ErrorComponent errorText="Error while fetching users" />;
           }
-          if(data) {
+          if (data) {
             const transformedUsers = transformUsers(data);
             return (
               <ManageUsers

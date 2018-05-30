@@ -18,6 +18,8 @@ export {
   GET_LOCATION,
   FETCH_USERS,
   PREV_RATES,
+  APPROVE_USER,
+  DEACTIVATE_USER
 } from './operations';
 export {
   loadImage,

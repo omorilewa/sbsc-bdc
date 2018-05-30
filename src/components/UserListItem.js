@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight } from 'react-native';
-import { string, number } from 'prop-types';
+import { View, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { string, number, bool } from 'prop-types';
 import { StyledText as Text } from '.';
 import { UserListStyles as styles } from '../styles';
+import { Mutation } from 'react-apollo';
+import { APPROVE_USER, DEACTIVATE_USER, FETCH_USERS } from '../util';
 
 class UserListItem extends Component {
   static navigationOptions = {
@@ -14,49 +16,30 @@ class UserListItem extends Component {
     name: string,
     username: string,
     role: string,
-    status: string,
+    status: bool,
   }
 
   state = {
-    isActive: this.props.status === "Active" ? true : false,
-    statusText: '',
-    actionButtonText: ''
-  }
-
-  componentDidMount() {
-    this.toggleActiveStatus();
+    isActive: this.props.status,
+    statusText: this.props.status ? "Active" : "Inactive",
+    actionButtonText: this.props.status ? "Deactivate" : "Activate",
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.Status !== prevState.Status) {
+    if (nextProps.status !== prevState.status) {
       return {
-        Status: nextProps.Status,
+        isActive: nextProps.status,
+        statusText: nextProps.status ? "Active" : "Inactive",
+        actionButtonText: nextProps.status ? "Deactivate" : "Activate",
       };
     }
     return null;
   }
 
-  toggleActiveStatus = () => {
-    if (this.state.isActive) {
-      this.setState((state, props) => ({
-        statusText: "Active",
-        actionButtonText: "Deactivate",
-        isActive: false
-      }))
-    } else if (!this.state.isActive) {
-      this.setState((state, props) => ({
-        statusText: "Inactive",
-        actionButtonText: "Activate",
-        isActive: true
-      }))
-    }
-  }
-
   render() {
     const {
-      toggleActiveStatus,
       state: { isActive, statusText, actionButtonText },
-      props: { id, name, username, role }
+      props: { id, name, username, role, userId }
     } = this;
 
     return (
@@ -76,18 +59,72 @@ class UserListItem extends Component {
         <View style={styles.noGaps}>
           <Text style={styles.listItem}>{statusText}</Text>
         </View>
-        <TouchableHighlight
-          underlayColor="#19B01D"
-          onPress={toggleActiveStatus}
-          style={isActive ?
-            [styles.statusButton, styles.button, styles.inActiveUserColor] :
-            [styles.statusButton, styles.button]
-          }
-        >
-          <View>
-            <Text style={styles.listItem}>{actionButtonText}</Text>
-          </View>
-        </TouchableHighlight>
+        {isActive &&
+          <Mutation mutation={DEACTIVATE_USER} onError={this.showError} onCompleted={this.clearForm}>
+            {(deactivateUser, { data, loading, error }) => {
+              if (loading) {
+                return (
+                  <View style={styles.spinner}>
+                    <ActivityIndicator
+                      size="small"
+                      color="#9c9e9f"
+                    />
+                  </View>
+                )
+              }
+              return (
+                <TouchableHighlight
+                  underlayColor="#19B01D"
+                  onPress={() =>
+                    deactivateUser({
+                      variables: { userId },
+                      refetchQueries: [{ query: FETCH_USERS }]
+                    })
+                  }
+                  style={[styles.statusButton, styles.button, styles.inActiveUserColor]}
+                >
+                  <View>
+                    <Text style={styles.listItem}>{actionButtonText}</Text>
+                  </View>
+                </TouchableHighlight>
+              )
+
+            }}
+          </Mutation>
+        }
+        {!isActive &&
+          <Mutation mutation={APPROVE_USER} onError={this.showError} onCompleted={this.clearForm}>
+            {(approveUser, { data, loading, error }) => {
+              if (loading) {
+                return (
+                  <View style={styles.spinner}>
+                    <ActivityIndicator
+                      size="small"
+                      color="#9c9e9f"
+                    />
+                  </View>
+                )
+              }
+              return (
+                <TouchableHighlight
+                  underlayColor="#19B01D"
+                  style={[styles.statusButton, styles.button]}
+                  onPress={() =>
+                    approveUser({
+                      variables: { userId },
+                      refetchQueries: [{ query: FETCH_USERS }]
+                    })
+                  }
+                >
+                  <View>
+                    <Text style={styles.listItem}>{actionButtonText}</Text>
+                  </View>
+                </TouchableHighlight>
+              )
+            }}
+          </Mutation>
+
+        }
       </View>
     );
   }

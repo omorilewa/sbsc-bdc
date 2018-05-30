@@ -1066,6 +1066,11 @@ export const UserListStyles = StyleSheet.create({
   },
   listBGColor: {
     backgroundColor: '#e5ece5',
+  },
+  spinner: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   }
 });
 

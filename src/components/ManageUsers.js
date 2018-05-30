@@ -30,20 +30,21 @@ class ManageUsers extends PureComponent {
           data={usersData}
           onEndReachedThreshold={0.5}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <View
               key={index}
               style={(index % 2 === 0) ?
                 styles.usersView :
                 [styles.usersView, styles.listBGColor]}>
-                <UserListItem
-                  id={item.id}
-                  name={item.name}
-                  username={item.username}
-                  role={item.role}
-                  status={item.status}
-                  key={index}
-                />
+              <UserListItem
+                id={item.id}
+                userId={item.userId}
+                name={item.name}
+                username={item.username}
+                role={item.role}
+                status={item.status}
+                key={index}
+              />
             </View>
           )}
           onEndReached={() => {
@@ -51,16 +52,16 @@ class ManageUsers extends PureComponent {
               variables: { cursor: endCursor },
               updateQuery: (previousResult, { fetchMoreResult }) => {
                 const newEdges = fetchMoreResult.usersConnection.edges;
-                const { pageInfo } = fetchMoreResult.usersConnection;
+                const pageInfo = fetchMoreResult.usersConnection.pageInfo;
 
                 return newEdges.length
                   ? {
-                      usersConnection: {
-                        __typename: previousResult.usersConnection.__typename,
-                        pageInfo,
-                        edges: [...previousResult.usersConnection.edges, ...newEdges],
-                      }
+                    usersConnection: {
+                      __typename: previousResult.usersConnection.__typename,
+                      pageInfo,
+                      edges: [...previousResult.usersConnection.edges, ...newEdges],
                     }
+                  }
                   : previousResult;
               }
             });
