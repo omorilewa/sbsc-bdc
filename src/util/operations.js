@@ -48,6 +48,31 @@ export const CREATE_BDC_OPERATOR = gql`
   }
 `;
 
+export const CREATE_BDC_ADMIN = gql`
+  mutation newBDCAdmin(
+    $email: String!,
+    $username: String!,
+    $password: String!,
+    $firstName: String!,
+    $middleName: String
+    $lastName: String!,
+    $locationId: String!,
+    $phoneNumber: String!) {
+    createAdmin(data: {
+      email: $email,
+      username: $username,
+      password: $password,
+      firstName: $firstName,
+      middleName: $middleName,
+      lastName: $lastName,
+      locationId: $locationId,
+      phoneNumber: $phoneNumber
+    }) {
+      name
+    }
+  }
+`;
+
 export const APPROVE_USER = gql`
   mutation approveUser($userId: String!) {
     approveUser(userId: $userId){

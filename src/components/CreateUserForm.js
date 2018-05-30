@@ -17,6 +17,7 @@ import { UserStyles as styles } from '../styles';
 import Loader from "./Loader";
 import {
   CREATE_BDC_OPERATOR,
+  CREATE_BDC_ADMIN,
   emailValidate,
   FETCH_USERS,
   locationId,
@@ -34,12 +35,14 @@ class CreateUserForm extends Component {
     errorText: '',
     errored: '',
     firstName: '',
+    isAdmin: false,
     isVisible: false,
     lastName: '',
     location: this.props.location,
     locationName: '',
     locationId: '',
     locationSelectError: false,
+    password: '',
     phoneNumber: '',
     roleSelectError: false,
     scrollify: false,
@@ -47,9 +50,7 @@ class CreateUserForm extends Component {
     selectedRole: '',
     showLocation: false,
     username: '',
-    password: '',
     visibleHeight: window.height,
-
   }
 
   componentDidMount() {
@@ -106,18 +107,22 @@ class CreateUserForm extends Component {
   }
 
   onClickDropDown = (value) => {
+    const extraStateEntries = {
+      selectedRole: value,
+      showLocation: true,
+      roleSelectError: false
+    }
+
     if (value === "Operator") {
       this.setState(() => ({
-        selectedRole: value,
-        showLocation: true,
-        roleSelectError: false
+        isAdmin: false,
+        ...extraStateEntries
       }))
     }
     if (value === "Admin") {
       this.setState(() => ({
-        selectedRole: value,
-        showLocation: false,
-        roleSelectError: false
+        isAdmin: true,
+        ...extraStateEntries
       }))
     }
   }
@@ -179,6 +184,7 @@ class CreateUserForm extends Component {
       state: {
         errorText,
         errored,
+        isAdmin,
         isVisible,
         location,
         locationSelectError,
@@ -192,6 +198,8 @@ class CreateUserForm extends Component {
         locationId,
         password
       },
+      onClickDropDown,
+      onClickLocationDropDown
     } = this;
 
     const firstName = _.startCase(_.toLower(this.state.firstName));
@@ -300,7 +308,7 @@ class CreateUserForm extends Component {
                           style.top = 468;
                           return style;
                         }}
-                        onSelect={(index, value) => { this.onClickDropDown(value) }}
+                        onSelect={(index, value) => { onClickDropDown(value) }}
                       />
                       <Text style={styles.arrow}>▼</Text>
                     </View>
@@ -331,7 +339,7 @@ class CreateUserForm extends Component {
                           style.top = 525;
                           return style;
                         }}
-                        onSelect={(index, value) => { this.onClickLocationDropDown(value) }}
+                        onSelect={(index, value) => { onClickLocationDropDown(value) }}
                       />
                       <Text style={styles.arrow}>▼</Text>
                     </View>
@@ -399,12 +407,12 @@ class CreateUserForm extends Component {
                       underlayColor="white">
                       <Text style={styles.button2}>CANCEL</Text>
                     </TouchableHighlight>
-                    <Mutation mutation={CREATE_BDC_OPERATOR} onError={this.showError} onCompleted={this.clearForm}>
-                      {(newBDCOperator, { data, loading, error }) => (
+                    <Mutation mutation={isAdmin ? CREATE_BDC_ADMIN : CREATE_BDC_OPERATOR} onError={this.showError} onCompleted={this.clearForm}>
+                      {(newBDCUser, { data, loading, error }) => (
                         <View>
                           <TouchableHighlight disabled={disabled} underlayColor="white"
                             onPress={() =>
-                              newBDCOperator({
+                              newBDCUser({
                                 variables: { firstName, username, lastName, email, password, phoneNumber, locationId },
                                 refetchQueries: [{ query: FETCH_USERS }]
                               })
