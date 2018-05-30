@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { array } from "prop-types";
-import { View, TouchableOpacity, ScrollView, FlatList } from "react-native";
+import { View, TouchableOpacity, FlatList } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 import moment from 'moment';
 import { StyledText as Text, RatesByPeriod } from ".";
