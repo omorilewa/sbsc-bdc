@@ -53,7 +53,7 @@ export const PREV_RATES = gql`
     viewer {
       user {
         ... on BDCOperator {
-          previousRatesConnection(first:20, after: $cursor) {
+          previousRatesConnection(first: 90, after: $cursor) {
             pageInfo {
               hasNextPage
               hasPreviousPage
@@ -104,7 +104,7 @@ export const ADD_BDC_RATE = gql`
 
 export const FETCH_USERS = gql`
   query users($cursor: ID) {
-    usersConnection(first: 15, after: $cursor) {
+    usersConnection(first: 20, after: $cursor) {
       pageInfo {
         endCursor
       }
