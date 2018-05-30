@@ -26,12 +26,19 @@ class SideMenu extends PureComponent {
   }
 
   async componentDidMount() {
-    const userType = await getItem('userType');
-    const username = await getItem('username');
-    this.setState(() => ({
-      username,
-      isAdmin: userType === 'BDCAdmin' ? true : false
-    }))
+    try {
+      const userType = await getItem('userType');
+      const username = await getItem('username');
+      this.setState(() => ({
+        username,
+        isAdmin: userType === 'BDCAdmin' ? true : false
+      }))
+    } catch (err) {
+      this.setState(() => ({
+        username: '',
+        isAdmin: false
+      }))
+    }
   }
 
   render() {
