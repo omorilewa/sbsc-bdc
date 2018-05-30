@@ -1,16 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Icon }  from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import {
   View,
   ScrollView,
   Image,
-  TouchableNativeFeedback
 } from 'react-native';
 import { SideMenuStyles as styles } from '../styles';
 import { getItem, clearStorage } from '../util';
-import { AppConsumer, StyledText as Text } from '.';
+import { AppConsumer, StyledText as Text, SideMenuItemWrapper } from '.';
 
 class SideMenu extends PureComponent {
   static propTypes = {
@@ -48,7 +46,7 @@ class SideMenu extends PureComponent {
             <ScrollView>
               {
                 !isAdmin &&
-                <TouchableNativeFeedback onPress={navigateToScreen('NewRate')} underlayColor="#004900">
+                <SideMenuItemWrapper onPress={navigateToScreen('NewRate')} underlayColor="#004900">
                   <View style={styles.label}>
                     <Image
                       style={styles.newRateIcon}
@@ -56,12 +54,12 @@ class SideMenu extends PureComponent {
                     />
                     <Text style={styles.menuItemsText}>INPUT NEW RATE</Text>
                   </View>
-                </TouchableNativeFeedback>
+                </SideMenuItemWrapper>
               }
 
               {
                 !isAdmin &&
-                <TouchableNativeFeedback onPress={navigateToScreen('PrevRate')} underlayColor="#004900">
+                <SideMenuItemWrapper onPress={navigateToScreen('PrevRate')} underlayColor="#004900">
                   <View style={styles.label}>
                     <Image
                       style={styles.prevRateIcon}
@@ -69,12 +67,12 @@ class SideMenu extends PureComponent {
                     />
                     <Text style={styles.menuItemsText}>PREVIOUS RATES</Text>
                   </View>
-                </TouchableNativeFeedback>
+                </SideMenuItemWrapper>
               }
 
               {
                 isAdmin &&
-                <TouchableNativeFeedback onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
+                <SideMenuItemWrapper onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
                   <View style={[styles.label, styles.userLabel]}>
                   <Image
                     style={styles.icon}
@@ -82,12 +80,12 @@ class SideMenu extends PureComponent {
                   />
                     <Text style={[styles.menuItemsText, styles.usersText]}>MANAGE USERS</Text>
                   </View>
-                </TouchableNativeFeedback>
+                </SideMenuItemWrapper>
               }
 
               {
                 isAdmin &&
-                <TouchableNativeFeedback onPress={navigateToScreen('Configuration')} underlayColor="#004900">
+                <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
                   <View style={styles.label}>
                     <Image
                       style={styles.configIcon}
@@ -95,10 +93,10 @@ class SideMenu extends PureComponent {
                     />
                     <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
                   </View>
-                </TouchableNativeFeedback>
+                </SideMenuItemWrapper>
               }
 
-              <TouchableNativeFeedback onPress={navigateToScreen('Help')} underlayColor="#004900">
+              <SideMenuItemWrapper onPress={navigateToScreen('Help')} underlayColor="#004900">
                 <View style={styles.label}>
                   <Image
                     style={styles.icon}
@@ -106,14 +104,14 @@ class SideMenu extends PureComponent {
                   />
                   <Text style={[styles.menuItemsText, styles.helpText]}>HELP</Text>
                 </View>
-              </TouchableNativeFeedback>
+              </SideMenuItemWrapper>
             </ScrollView>
 
             <View style={styles.footer}>
               <View style={styles.hr} />
                 <View style={styles.bottom}>
                   <View>
-                    <TouchableNativeFeedback
+                    <SideMenuItemWrapper
                       underlayColor='#004900'
                       onPress={() => {
                         changeUsername('');
@@ -121,7 +119,7 @@ class SideMenu extends PureComponent {
                         clearStorage();
                       }}>
                       <Text style={styles.logoutText}>LOG OUT</Text>
-                    </TouchableNativeFeedback>
+                    </SideMenuItemWrapper>
                     <Text style={styles.bottomTxt}>{username}</Text>
                   </View>
                   <Image

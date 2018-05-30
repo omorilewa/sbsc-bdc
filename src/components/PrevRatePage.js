@@ -31,8 +31,7 @@ class PrevRatePage extends Component {
             <PrevRate
               prevRateData={transformData(data.viewer.user.previousRatesConnection.edges)}
               fetchMore={fetchMore}
-              endCursor={data.viewer.user.previousRatesConnection.pageInfo.endCursor}
-              hasNextPage={data.viewer.user.previousRatesConnection.pageInfo.hasNextPage} />
+              endCursor={data.viewer.user.previousRatesConnection.pageInfo.endCursor} />
           );
         }}
       </Query>
