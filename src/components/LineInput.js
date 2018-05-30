@@ -14,6 +14,7 @@ const LineInput = ({
   placeholder,
   maxLength,
   style,
+  secureTextEntry,
   keyboardType,
   meta: { touched, error, active, dirty, submitFailed },
   input: { onChange, onFocus, ...restInput }
@@ -34,6 +35,7 @@ const LineInput = ({
         onFocus={onFocus}
         {...restInput}
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
         placeholderTextColor="#D1D1D1"
         maxLength={maxLength}
         keyboardType={keyboardType}

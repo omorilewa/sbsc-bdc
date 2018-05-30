@@ -259,6 +259,7 @@ class CreateUserForm extends Component {
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
               <View style={styles.passwordField}>
@@ -268,6 +269,7 @@ class CreateUserForm extends Component {
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
             </View>
