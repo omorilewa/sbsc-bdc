@@ -15,7 +15,6 @@ import SplashScreen from 'react-native-splash-screen'
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 import { Sentry } from 'react-native-sentry';
-import { AppProvider } from './src/components';
 import { PrimaryNavigator } from "./src/navigation";
 import { store, client } from "./src/util";
 console.disableYellowBox = true;
@@ -33,14 +32,12 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <AppProvider>
-          <Provider store={store}>
-            <View style={styles.container}>
-              {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-              <PrimaryNavigator />
-            </View>
-          </Provider>
-        </AppProvider>
+        <Provider store={store}>
+          <View style={styles.container}>
+            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+            <PrimaryNavigator />
+          </View>
+        </Provider>
       </ApolloProvider>
     );
   }

@@ -1,4 +1,3 @@
-export { AppContext, AppProvider, AppConsumer } from './AppProvider';
 export { StyledText } from './StyledText';
 export { default as RenderInput } from './RenderInput';
 export { default as LineInput } from './LineInput';
