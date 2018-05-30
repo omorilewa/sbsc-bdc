@@ -36,15 +36,6 @@ export const removeItem = async(item) => {
   }
 }
 
-export const multiRemoveItems = async(itemsKeysArray) => {
-  try {
-    const operation = await AsyncStorage.multiRemove(itemsKeysArray);
-    return operation;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export const clearStorage = async() => {
   try {
     const operation = await AsyncStorage.clear();
