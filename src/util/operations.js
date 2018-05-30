@@ -48,6 +48,23 @@ export const CREATE_BDC_OPERATOR = gql`
   }
 `;
 
+export const APPROVE_USER = gql`
+  mutation approveUser($userId: String!) {
+    approveUser(userId: $userId){
+      username
+    }
+  }
+`;
+
+export const DEACTIVATE_USER = gql`
+  mutation deactivateUser($userId: ID!) {
+    deactivateUser(userId: $userId){
+      username
+    }
+  }
+`;
+
+
 export const PREV_RATES = gql`
   query previousRates($cursor: ID) {
     viewer {
@@ -112,14 +129,18 @@ export const FETCH_USERS = gql`
         cursor
         node {
           ... on BDCOperator {
+            id
             email
             username
             name
+            active
           }
           ... on BDCAdmin {
+            id
             email
             username
             name
+            active
           }
         }
       }
