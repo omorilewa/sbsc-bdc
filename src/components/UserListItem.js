@@ -64,12 +64,11 @@ class UserListItem extends Component {
             {(deactivateUser, { data, loading, error }) => {
               if (loading) {
                 return (
-                  <View style={styles.modalBackground}>
-                    <View style={styles.spinner}>
-                      <ActivityIndicator
-                        size="small"
-                        color="#9c9e9f" />
-                    </View>
+                  <View style={styles.spinner}>
+                    <ActivityIndicator
+                      size="small"
+                      color="#9c9e9f"
+                    />
                   </View>
                 )
               }
@@ -98,29 +97,30 @@ class UserListItem extends Component {
             {(approveUser, { data, loading, error }) => {
               if (loading) {
                 return (
-                  <View style={styles.modalBackground}>
-                    <View style={styles.spinner}>
-                      <ActivityIndicator
-                        size="small"
-                        color="#9c9e9f" />
-                    </View>
+                  <View style={styles.spinner}>
+                    <ActivityIndicator
+                      size="small"
+                      color="#9c9e9f"
+                    />
                   </View>
                 )
               }
-              return (<TouchableHighlight
-                underlayColor="#19B01D"
-                style={[styles.statusButton, styles.button]}
-                onPress={() =>
-                  approveUser({
-                    variables: { userId },
-                    refetchQueries: [{ query: FETCH_USERS }]
-                  })
-                }
-              >
-                <View>
-                  <Text style={styles.listItem}>{actionButtonText}</Text>
-                </View>
-              </TouchableHighlight>)
+              return (
+                <TouchableHighlight
+                  underlayColor="#19B01D"
+                  style={[styles.statusButton, styles.button]}
+                  onPress={() =>
+                    approveUser({
+                      variables: { userId },
+                      refetchQueries: [{ query: FETCH_USERS }]
+                    })
+                  }
+                >
+                  <View>
+                    <Text style={styles.listItem}>{actionButtonText}</Text>
+                  </View>
+                </TouchableHighlight>
+              )
             }}
           </Mutation>
 
