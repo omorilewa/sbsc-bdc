@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { View } from "react-native";
 import { Time, StyledText as Text } from '.';
 import { SuperHeaderStyles as styles } from '../styles';
 import { getItem } from "../util";
 
 
-class SuperHeader extends Component {
+class SuperHeader extends PureComponent {
   state = {
     username: ''
   }
