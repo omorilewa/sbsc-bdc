@@ -78,6 +78,11 @@ class CreateUserForm extends Component {
         errored: true,
         errorText: error.graphQLErrors[0].message
       }));
+    } else if(stringError.includes('phone')) {
+      this.setState(() => ({
+        errored: true,
+        errorText: "A user with this phone number already exists"
+      }));
     } else {
       this.setState(() => ({
         errored: true,
@@ -259,6 +264,7 @@ class CreateUserForm extends Component {
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
               <View style={styles.passwordField}>
@@ -268,6 +274,7 @@ class CreateUserForm extends Component {
                   style={styles.inputField}
                   component={LineInput}
                   validate={[required]}
+                  secureTextEntry
                 />
               </View>
             </View>
