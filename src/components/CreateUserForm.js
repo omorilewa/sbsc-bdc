@@ -352,7 +352,14 @@ class CreateUserForm extends Component {
               underlayColor="#19B01D"
               style={styles.buttonBody}
               disabled={disabled}
-              onPress={handleSubmit((values) => this.onSubmit(values))}
+              onPress={handleSubmit(values => {
+                console.log('Create User Values', values, locationId, selectedRole);
+                if(!!values && typeof values === 'object' && Object.keys(values).every(item => !!item) && !!locationId && !!selectedRole) {
+                  this.onSubmit(values)
+                } else {
+                  return;
+                }
+              })}
             >
               <Text style={styles.buttonText}>Add</Text>
             </TouchableHighlight>
