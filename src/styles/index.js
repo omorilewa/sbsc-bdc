@@ -271,12 +271,18 @@ export const NewRateStyles = StyleSheet.create({
   buttonBody: {
     marginTop: 60,
     height: 37,
+    borderRadius: 30,
     backgroundColor: "#19B01D",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnWKeyboard: {
+    borderRadius: 30,
     marginTop: 40,
     height: 37,
     backgroundColor: "#19B01D",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   drawer: {
     fontFamily: 'montserrat-bold',
