@@ -2,9 +2,9 @@ import React, { PureComponent } from "react";
 import {
   View,
   ImageBackground,
-  Image
+  Image,
+  TouchableHighlight,
 } from "react-native";
-import { Button } from 'native-base';
 import { func, bool, number, string } from "prop-types";
 import { Field } from "redux-form";
 import { Mutation } from 'react-apollo';
@@ -81,24 +81,21 @@ class Home extends PureComponent {
                   return <Loader loading={loading} />;
                 }
                 return (
-                  <View style={styles.buttonView}>
-                    <Button
-                      block
-                      rounded
-                      style={styles.getStartedButton}
-                      onPress={handleSubmit(async (values) => {
-                        const { password } = values;
-                        let { usernameOrEmail } = values;
-                        usernameOrEmail = usernameOrEmail.toLowerCase();
-                        removeItem('token');
-                        removeErrorText();
-                        await login({
-                          variables: { usernameOrEmail, password }
-                        });
-                      })}>
-                      <Text style={styles.buttonText}>Get Started</Text>
-                    </Button>
-                  </View>
+                  <TouchableHighlight
+                    underlayColor="#19B01D"
+                    style={styles.buttonBody}
+                    onPress={handleSubmit(async (values) => {
+                      const { password } = values;
+                      let { usernameOrEmail } = values;
+                      usernameOrEmail = usernameOrEmail.toLowerCase();
+                      removeItem('token');
+                      removeErrorText();
+                      await login({
+                        variables: { usernameOrEmail, password }
+                      });
+                    })}>
+                    <Text style={styles.buttonText}>Get Started</Text>
+                  </TouchableHighlight>
                 )}}
             </Mutation>
           </View>

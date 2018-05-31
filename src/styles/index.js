@@ -31,9 +31,14 @@ export const HomeScreenStyles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 10
   },
-  buttonView: {
-    flex: 1,
-    width: '100%'
+  buttonBody: {
+    height: 50,
+    borderRadius: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: '4%',
+    width: '100%',
+    backgroundColor: "#19B01D"
   },
   image: {
     width: 120,
@@ -98,14 +103,10 @@ export const HomeScreenStyles = StyleSheet.create({
     fontSize: 12,
     color: "red"
   },
-  button: {
-    backgroundColor: "#50AE32",
-    height: 50,
-    marginTop: "4%"
-  },
   buttonText: {
     color: "white",
     fontSize: 12,
+    paddingTop: '3%'
   },
   logoContainer: {
     marginTop: "35%",
@@ -270,12 +271,18 @@ export const NewRateStyles = StyleSheet.create({
   buttonBody: {
     marginTop: 60,
     height: 37,
+    borderRadius: 30,
     backgroundColor: "#19B01D",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnWKeyboard: {
+    borderRadius: 30,
     marginTop: 40,
     height: 37,
     backgroundColor: "#19B01D",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   drawer: {
     fontFamily: 'montserrat-bold',
@@ -536,9 +543,12 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontFamily: "montserrat-bold",
   },
   buttonBody: {
+    borderRadius: 30,
     marginTop: 40,
     height: 40,
     backgroundColor: "#1AB21E",
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   titleText: {
     fontSize: 11,

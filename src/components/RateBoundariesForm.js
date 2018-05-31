@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { func } from "prop-types";
-import { View } from "react-native";
-import { Label, Button } from "native-base";
+import { View, TouchableHighlight } from "react-native";
+import { Label } from "native-base";
 import { Field } from "redux-form";
 import {
   LineInput,
@@ -94,9 +94,9 @@ class RateBoundariesForm extends PureComponent {
             onValueChange={eveningChange}
           />
         </View>
-        <Button block rounded style={styles.buttonBody}>
+        <TouchableHighlight style={styles.buttonBody} underlayColor="#19B01D">
           <Text style={styles.buttonText}>Save settings</Text>
-        </Button>
+        </TouchableHighlight>
       </View>
     );
   }

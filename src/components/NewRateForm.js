@@ -1,28 +1,29 @@
-import React, { Component, Fragment } from "react";
+import React, { PureComponent, Fragment } from "react";
 import { func } from "prop-types";
 import {
-  View,
   Dimensions,
   Keyboard,
-  ScrollView
+  ScrollView,
+  TouchableHighlight,
+  View,
 } from "react-native";
-import { Item, Label, Picker, Button } from "native-base";
+import { Item, Label, Picker } from "native-base";
 import { Field } from "redux-form";
 import Modal from 'react-native-modal';
 import { Mutation } from 'react-apollo';
-import { ADD_BDC_RATE, PREV_RATES } from '../util';
-import Loader from "./Loader";
+import { ADD_BDC_RATE, PREV_RATES , number, required } from '../util';
 import {
+  ErrorComponent,
   LineInput,
-  StyledText as Text,
+  Loader,
   SideMenuItemWrapper,
+  StyledText as Text,
 } from ".";
 import { NewRateStyles as styles } from "../styles";
-import { required, number } from '../util';
 
 const window = Dimensions.get('window');
 
-class NewRateForm extends Component {
+class NewRateForm extends PureComponent {
   static propTypes = {
     handleSubmit: func,
     reset: func,
@@ -166,14 +167,12 @@ class NewRateForm extends Component {
                 validate={[required, number]}
               />
             </View>
-            <Button
+            <TouchableHighlight
+              underlayColor="#19B01D"
               onPress={handleSubmit((values) => this.openModal(values))}
-              block
-              rounded
-              style={scrollify ? styles.btnWKeyboard : styles.buttonBody}
-            >
+              style={scrollify ? styles.btnWKeyboard : styles.buttonBody}>
               <Text style={styles.buttonText}>Submit rate</Text>
-            </Button>
+            </TouchableHighlight>
             <Modal
               isVisible={isVisible}
               onSwipe={() => this.setState({ isVisible: false })}
@@ -223,6 +222,7 @@ class NewRateForm extends Component {
                             <Text style={styles.button1}>CONTINUE</Text>
                           </SideMenuItemWrapper>
                           {loading && <Loader loading={loading} />}
+                          {error && <ErrorComponent errorText="An error occured while adding new rate" />}
                         </Fragment>
                       )}
                     </Mutation>
