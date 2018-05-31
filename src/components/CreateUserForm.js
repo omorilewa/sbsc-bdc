@@ -43,6 +43,7 @@ class CreateUserForm extends Component {
     locationId: '',
     locationSelectError: false,
     password: '',
+    passwordMatchError: false,
     phoneNumber: '',
     roleSelectError: false,
     scrollify: false,
@@ -141,14 +142,25 @@ class CreateUserForm extends Component {
     if (selectedRole === '') {
       this.setState(() => ({
         roleSelectError: true,
-      }))
+      }));
       return;
     }
     if (selectedLocation === '') {
       this.setState(() => ({
         locationSelectError: true,
-      }))
+      }));
       return;
+    }
+    if (value['confirm-password'] !== password) {
+      this.setState(() => ({
+        passwordMatchError: true,
+      }));
+      return;
+    }
+    if (value['confirm-password'] === password) {
+      this.setState(() => ({
+        passwordMatchError: false,
+      }));
     }
     this.setState((state) => ({
       isVisible: true,
@@ -188,6 +200,7 @@ class CreateUserForm extends Component {
         isVisible,
         location,
         locationSelectError,
+        passwordMatchError,
         roleSelectError,
         selectedLocation,
         selectedRole,
@@ -348,6 +361,7 @@ class CreateUserForm extends Component {
                 {locationSelectError && <Text style={styles.errorMsg}>Please select a location</Text>}
               </View>
             </View>}
+            {passwordMatchError && <Text style={styles.errorMsg}>Passwords do not match</Text>}
             <TouchableHighlight
               underlayColor="#19B01D"
               style={styles.buttonBody}
