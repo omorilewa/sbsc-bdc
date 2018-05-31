@@ -11,8 +11,12 @@ class SuperHeader extends PureComponent {
   }
 
   async componentDidMount() {
-    const username = await getItem('username');
-    this.setState({ username })
+    try {
+      const username = await getItem('username');
+      this.setState({ username })
+    } catch (err) {
+      this.setState({ username: '' })
+    }
   }
 
   render() {
