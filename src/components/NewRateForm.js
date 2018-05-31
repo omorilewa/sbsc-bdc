@@ -213,11 +213,16 @@ class NewRateForm extends PureComponent {
                       {(newBDCRate, { data, loading, error }) => (
                         <Fragment>
                           <SideMenuItemWrapper disabled={disabled} underlayColor="white"
-                            onPress={() =>
-                              newBDCRate({
-                                variables: { buyRate, sellRate, currency: selected },
-                                refetchQueries: [{ query: PREV_RATES }]
-                              })
+                            onPress={() => {
+                              if (!!buyRate && !!sellRate && !!selected) {
+                                newBDCRate({
+                                  variables: { buyRate, sellRate, currency: selected },
+                                  refetchQueries: [{ query: PREV_RATES }]
+                                })
+                              } else {
+                                return;
+                              }
+                            }
                             }>
                             <Text style={styles.button1}>CONTINUE</Text>
                           </SideMenuItemWrapper>
