@@ -103,15 +103,18 @@ class SideMenu extends PureComponent {
             </SideMenuItemWrapper>
           }
 
-          <SideMenuItemWrapper onPress={navigateToScreen('Help')} underlayColor="#004900">
-            <View style={styles.label}>
-              <Image
-                style={styles.icon}
-                source={require(`../assets/images/icon_help.png`)}
-              />
-              <Text style={[styles.menuItemsText, styles.helpText]}>HELP</Text>
-            </View>
-          </SideMenuItemWrapper>
+          {
+            !isAdmin &&
+            <SideMenuItemWrapper onPress={navigateToScreen('Help')} underlayColor="#004900">
+              <View style={styles.label}>
+                <Image
+                  style={styles.icon}
+                  source={require(`../assets/images/icon_help.png`)}
+                />
+                <Text style={[styles.menuItemsText, styles.helpText]}>HELP</Text>
+              </View>
+            </SideMenuItemWrapper>
+          }
         </ScrollView>
 
         <View style={styles.footer}>
