@@ -85,14 +85,18 @@ class Home extends PureComponent {
                     underlayColor="#19B01D"
                     style={styles.buttonBody}
                     onPress={handleSubmit(async (values) => {
-                      const { password } = values;
-                      let { usernameOrEmail } = values;
-                      usernameOrEmail = usernameOrEmail.toLowerCase();
-                      removeItem('token');
-                      removeErrorText();
-                      await login({
-                        variables: { usernameOrEmail, password }
-                      });
+                      if (!!values && typeof values === 'object' && Object.keys(values).every(item => !!item)) {
+                        const { password } = values;
+                        let { usernameOrEmail } = values;
+                        usernameOrEmail = usernameOrEmail.toLowerCase();
+                        removeItem('token');
+                        removeErrorText();
+                        await login({
+                          variables: { usernameOrEmail, password }
+                        });
+                      } else {
+                        return;
+                      }
                     })}>
                     <Text style={styles.buttonText}>Get Started</Text>
                   </TouchableHighlight>
