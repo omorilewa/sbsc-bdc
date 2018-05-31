@@ -69,7 +69,8 @@ class CreateUserForm extends Component {
     const newSize = window.height - (e.endCoordinates.height * 1.6);
     this.setState((state) => ({
       visibleHeight: newSize,
-      scrollify: true
+      scrollify: true,
+      passwordMatchError: false
     }));
   }
 
