@@ -353,8 +353,7 @@ class CreateUserForm extends Component {
               style={styles.buttonBody}
               disabled={disabled}
               onPress={handleSubmit(values => {
-                console.log('Create User Values', values, locationId, selectedRole);
-                if(!!values && typeof values === 'object' && Object.keys(values).every(item => !!item) && !!locationId && !!selectedRole) {
+                if(!!values && typeof values === 'object' && Object.keys(values).every(item => !!item)) {
                   this.onSubmit(values)
                 } else {
                   return;
