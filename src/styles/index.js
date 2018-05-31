@@ -543,9 +543,12 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontFamily: "montserrat-bold",
   },
   buttonBody: {
+    borderRadius: 30,
     marginTop: 40,
     height: 40,
     backgroundColor: "#1AB21E",
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   titleText: {
     fontSize: 11,
