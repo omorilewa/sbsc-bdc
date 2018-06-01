@@ -8,6 +8,7 @@ import {
   NewRateScreen,
   PrevRateScreen,
   RateBoundariesScreen,
+  CreateUserScreen,
   ManageUserScreen,
   FAQScreen,
 } from '../screens';
@@ -30,6 +31,7 @@ const drawerButton = navigation =>
 export const DrawerStack = DrawerNavigator({
   NewRate: { screen: NewRateScreen },
   PrevRate: { screen: PrevRateScreen },
+  CreateUser: { screen: CreateUserScreen},
   ManageUsers: { screen: ManageUserScreen},
   Configuration: { screen: RateBoundariesScreen },
   Help: { screen: FAQScreen },
