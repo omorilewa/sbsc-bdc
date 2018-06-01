@@ -15,6 +15,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 import { Sentry } from 'react-native-sentry';
+import FlashMessage from "react-native-flash-message";
 import { PrimaryNavigator } from "./src/navigation";
 import { store, client } from "./src/util";
 console.disableYellowBox = true;
@@ -36,6 +37,12 @@ class App extends Component {
           <View style={styles.container}>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
             <PrimaryNavigator />
+            <FlashMessage
+              position="bottom"
+              duration={3000}
+              style={styles.flash}
+              titleStyle={styles.flashText}
+            />
           </View>
         </Provider>
       </ApolloProvider>
@@ -49,5 +56,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
+  },
+  flash: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flashText: {
+    fontFamily: 'montserrat'
   }
 });
