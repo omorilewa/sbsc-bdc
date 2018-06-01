@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, ActivityIndicator } from 'react-native';
 import { string, number, bool } from 'prop-types';
-import { StyledText as Text } from '.';
+import { StyledText as Text, ErrorComponent } from '.';
 import { UserListStyles as styles } from '../styles';
 import { Mutation } from 'react-apollo';
-import { APPROVE_USER, DEACTIVATE_USER } from '../util';
+import { APPROVE_USER, DEACTIVATE_USER, FETCH_USERS } from '../util';
 
 class UserListItem extends Component {
   static navigationOptions = {
@@ -61,32 +61,26 @@ class UserListItem extends Component {
         </View>
         <Mutation mutation={isActive ? DEACTIVATE_USER : APPROVE_USER} onError={this.showError} onCompleted={this.clearForm}>
           {(changeUserStatus, { data, loading, error }) => {
+            if (loading) {
+              return (
+                <View style={styles.spinner}>
+                  <ActivityIndicator
+                    size="small"
+                    color="#9c9e9f"
+                  />
+                </View>
+              )
+            } else if (error) {
+              return <ErrorComponent errorText="An error occured while updating user status" />
+            }
             return (
               <TouchableHighlight
                 underlayColor="#19B01D"
-                onPress={() => {
-                  const opResponseObject = isActive ?
-                  {
-                    __typename: "Mutation",
-                    deactivateUser: {
-                      id: userId,
-                      __typename: "BDCOperator" || "BDCAdmin",
-                      active: false
-                    }
-                  } :
-                  {
-                    __typename: "Mutation",
-                    approveUser: {
-                      id: userId,
-                      __typename: "BDCOperator" || "BDCAdmin",
-                      active: true
-                    }
-                  }
+                onPress={() =>
                   changeUserStatus({
                     variables: { userId },
-                    optimisticResponse: opResponseObject
+                    refetchQueries: [{ query: FETCH_USERS }]
                   })
-                }
                 }
                 style={isActive ?
                   [styles.statusButton, styles.button] :
@@ -97,7 +91,7 @@ class UserListItem extends Component {
                   <Text style={styles.listItem}>{actionButtonText}</Text>
                 </View>
               </TouchableHighlight>
-            )
+            );
           }}
         </Mutation>
       </View>
