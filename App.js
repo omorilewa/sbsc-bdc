@@ -37,7 +37,12 @@ class App extends Component {
           <View style={styles.container}>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
             <PrimaryNavigator />
-            <FlashMessage position="bottom" duration={3000} style={styles.flash} />
+            <FlashMessage
+              position="bottom"
+              duration={3000}
+              style={styles.flash}
+              titleStyle={styles.flashText}
+            />
           </View>
         </Provider>
       </ApolloProvider>
@@ -55,5 +60,8 @@ const styles = StyleSheet.create({
   flash: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  flashText: {
+    fontFamily: 'montserrat'
   }
 });
