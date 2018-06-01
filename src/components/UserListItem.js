@@ -89,8 +89,8 @@ class UserListItem extends Component {
                 }
                 }
                 style={isActive ?
-                  [styles.statusButton, styles.button, styles.inActiveUserColor] :
-                  [styles.statusButton, styles.button]
+                  [styles.statusButton, styles.button] :
+                  [styles.statusButton, styles.button, styles.inActiveUserColor]
                 }
               >
                 <View>
