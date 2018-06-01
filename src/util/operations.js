@@ -76,7 +76,8 @@ export const CREATE_BDC_ADMIN = gql`
 export const APPROVE_USER = gql`
   mutation approveUser($userId: String!) {
     approveUser(userId: $userId){
-      username
+      active
+      id
     }
   }
 `;
@@ -84,7 +85,8 @@ export const APPROVE_USER = gql`
 export const DEACTIVATE_USER = gql`
   mutation deactivateUser($userId: ID!) {
     deactivateUser(userId: $userId){
-      username
+      active
+      id
     }
   }
 `;
