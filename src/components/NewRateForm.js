@@ -126,6 +126,7 @@ class NewRateForm extends PureComponent {
     return (
       <View style={{ height: visibleHeight }}>
         <ScrollView
+          keyboardShouldPersistTaps={'always'}
           style={styles.scrollContainer}
           contentContainerStyle={styles.scrollContent}
         >
