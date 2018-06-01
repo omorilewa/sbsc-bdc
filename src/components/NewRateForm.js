@@ -11,6 +11,7 @@ import { Item, Label, Picker } from "native-base";
 import { Field } from "redux-form";
 import Modal from 'react-native-modal';
 import { Mutation } from 'react-apollo';
+import { showMessage } from "react-native-flash-message";
 import { ADD_BDC_RATE, PREV_RATES , number, required } from '../util';
 import {
   ErrorComponent,
@@ -213,12 +214,17 @@ class NewRateForm extends PureComponent {
                       {(newBDCRate, { data, loading, error }) => (
                         <Fragment>
                           <SideMenuItemWrapper disabled={disabled} underlayColor="white"
-                            onPress={() => {
+                            onPress={async () => {
                               if (!!buyRate && !!sellRate && !!selected) {
-                                newBDCRate({
+                                await newBDCRate({
                                   variables: { buyRate, sellRate, currency: selected },
                                   refetchQueries: [{ query: PREV_RATES }]
-                                })
+                                });
+                                showMessage({
+                                  message: "Rate successfully added",
+                                  type: "success",
+                                  backgroundColor: "#19B01D"
+                                });
                               } else {
                                 return;
                               }
