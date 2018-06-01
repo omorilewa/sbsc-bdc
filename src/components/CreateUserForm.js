@@ -12,6 +12,7 @@ import _ from 'lodash';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Mutation } from 'react-apollo';
 import { Field, reduxForm } from "redux-form";
+import { showMessage } from "react-native-flash-message";
 import { LineInput, StyledText as Text } from ".";
 import { UserStyles as styles } from '../styles';
 import Loader from "./Loader";
@@ -432,16 +433,28 @@ class CreateUserForm extends Component {
                       {(newBDCUser, { data, loading, error }) => (
                         <View>
                           <TouchableHighlight disabled={disabled} underlayColor="white"
-                            onPress={() =>
-                              newBDCUser({
+                            onPress={async () => {
+                              await newBDCUser({
                                 variables: { firstName, username, lastName, email, password, phoneNumber, locationId },
                                 refetchQueries: [{ query: FETCH_USERS }]
-                              })
-                            }
+                              });
+                              showMessage({
+                                message: "User created successfully",
+                                type: "success",
+                                backgroundColor: "#19B01D"
+                              });
+                            }}
                           >
                             <Text style={styles.button1}>CONTINUE</Text>
                           </TouchableHighlight>
                           {loading && <Loader loading={loading} />}
+                          {
+                            error &&
+                            showMessage({
+                              message: "User creation failed",
+                              type: "danger",
+                            })
+                          }
                         </View>
                       )}
                     </Mutation>
