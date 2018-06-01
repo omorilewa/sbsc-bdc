@@ -89,8 +89,7 @@ class SideMenu extends PureComponent {
               </View>
             </SideMenuItemWrapper>
           }
-
-          {
+          {/* {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
               <View style={styles.label}>
@@ -101,8 +100,7 @@ class SideMenu extends PureComponent {
                 <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
               </View>
             </SideMenuItemWrapper>
-          }
-
+          } */}
           {
             !isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Help')} underlayColor="#004900">
