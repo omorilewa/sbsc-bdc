@@ -1003,10 +1003,12 @@ export const UserStyles = StyleSheet.create({
     width: "50%",
   },
   wrapperView: {
+    flex: 1,
     backgroundColor: "white",
     alignItems: "center",
     paddingLeft: 12,
     paddingRight: 12,
+    paddingBottom: 15
   },
 });
 
