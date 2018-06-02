@@ -60,7 +60,7 @@ class PrevRate extends PureComponent {
 
   onClickDropDown = (value) => {
     let isFiltering = true
-    if(value === 'All data') {
+    if (value === 'All data') {
       isFiltering = false
     }
     this.setState(() => ({
@@ -98,42 +98,43 @@ class PrevRate extends PureComponent {
           </TouchableOpacity>
         </View>
         <FlatList
-              data={prevRateData}
-              keyExtractor={(item, index) => index.toString()}
-              onEndReached={() => {
-                if(!this.state.isFiltering) {
-                  fetchMore({
-                    variables: { cursor: endCursor },
-                    updateQuery: (previousResult, { fetchMoreResult }) => {
-                      const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
-                      console.log('fetching...')
-                      return newEdges.length
-                        ? {
-                            viewer: {
-                              __typename: previousResult.viewer.__typename,
-                              user: {
-                                __typename: previousResult.viewer.user.__typename,
-                                previousRatesConnection: {
-                                  __typename: previousResult.viewer.user.previousRatesConnection.__typename,
-                                  edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
-                                  pageInfo
-                                }
-                              }
+          data={prevRateData}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReached={() => {
+            if (!this.state.isFiltering) {
+              fetchMore({
+                variables: { cursor: endCursor },
+                updateQuery: (previousResult, { fetchMoreResult }) => {
+                  if (fetchMoreResult) {
+                    const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
+                    return newEdges.length
+                      ? {
+                        viewer: {
+                          __typename: previousResult.viewer.__typename,
+                          user: {
+                            __typename: previousResult.viewer.user.__typename,
+                            previousRatesConnection: {
+                              __typename: previousResult.viewer.user.previousRatesConnection.__typename,
+                              edges: [...previousResult.viewer.user.previousRatesConnection.edges, ...newEdges],
+                              pageInfo
                             }
                           }
-                        : previousResult;
-                    }
-                  });
+                        }
+                      }
+                      : previousResult;
+                  }
                 }
-              }}
-              renderItem={({ item, index }) =>
-                <View key={index} style={index % 2 === 0 ? styles.body : [styles.body, styles.bg]}>
-                  <Text style={styles.day}>{item.date}</Text>
-                  <RatesByPeriod rates={item} period="morning" />
-                  <RatesByPeriod rates={item} period="afternoon" />
-                  <RatesByPeriod rates={item} period="evening" />
-                </View>
-              } />
+              });
+            }
+          }}
+          renderItem={({ item, index }) =>
+            <View key={index} style={index % 2 === 0 ? styles.body : [styles.body, styles.bg]}>
+              <Text style={styles.day}>{item.date}</Text>
+              <RatesByPeriod rates={item} period="morning" />
+              <RatesByPeriod rates={item} period="afternoon" />
+              <RatesByPeriod rates={item} period="evening" />
+            </View>
+          } />
       </View>
     );
   }

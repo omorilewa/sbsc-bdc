@@ -82,7 +82,7 @@ class HomeScreen extends Component {
     this.setState(() => ({ errored: false }));
     const { navigate } = this.props.navigation;
     await multiSetItems({ token, username, userType: __typename });
-    __typename === 'BDCAdmin' ? navigate('ManageUsers') : navigate('DrawerStack');
+    __typename === 'BDCAdmin' ? navigate('CreateUser') : navigate('DrawerStack');
   }
 
   render() {

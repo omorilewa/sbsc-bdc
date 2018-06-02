@@ -79,18 +79,29 @@ class SideMenu extends PureComponent {
 
           {
             isAdmin &&
-            <SideMenuItemWrapper onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
+            <SideMenuItemWrapper onPress={navigateToScreen('CreateUser')} underlayColor="#004900">
               <View style={[styles.label, styles.userLabel]}>
               <Image
                 style={styles.icon}
                 source={require(`../assets/images/icon_profile.png`)}
               />
+                <Text style={[styles.menuItemsText, styles.usersText]}>CREATE USERS</Text>
+              </View>
+            </SideMenuItemWrapper>
+          }
+          {
+            isAdmin &&
+            <SideMenuItemWrapper onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
+              <View style={[styles.label, styles.userLabel]}>
+              <Image
+                style={styles.configIcon}
+                source={require(`../assets/images/icon_settings.png`)}
+              />
                 <Text style={[styles.menuItemsText, styles.usersText]}>MANAGE USERS</Text>
               </View>
             </SideMenuItemWrapper>
           }
-
-          {
+          {/* {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
               <View style={styles.label}>
@@ -101,8 +112,7 @@ class SideMenu extends PureComponent {
                 <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
               </View>
             </SideMenuItemWrapper>
-          }
-
+          } */}
           {
             !isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Help')} underlayColor="#004900">

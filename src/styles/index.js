@@ -178,7 +178,7 @@ export const SuperHeaderStyles = StyleSheet.create({
   },
   headerText: {
     color: 'white',
-    fontSize: 11
+    fontSize: 13
   },
 });
 
@@ -370,7 +370,7 @@ export const NavigationStyles = StyleSheet.create({
 export const TimeStyles = StyleSheet.create({
   text: {
     color: 'white',
-    fontSize: 11,
+    fontSize: 13,
   },
 });
 
@@ -391,15 +391,15 @@ export const PrevRateStyles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontSize: 9,
+    fontSize: 11,
     color: '#9c9e9f'
   },
   day: {
-    fontSize: 9,
+    fontSize: 11,
     color: '#9c9e9f',
   },
   text2: {
-    fontSize: 9,
+    fontSize: 11,
     color: '#595959'
   },
   date: {
@@ -408,15 +408,15 @@ export const PrevRateStyles = StyleSheet.create({
     marginTop: 7
   },
   curText: {
-    fontSize: 9,
+    fontSize: 11,
     color: '#595959'
   },
   heading: {
-    fontSize: 8,
+    fontSize: 10,
     color: '#a2d293'
   },
   heading2: {
-    fontSize: 8,
+    fontSize: 10,
     marginLeft: 3
   },
   hr: {
@@ -1003,10 +1003,12 @@ export const UserStyles = StyleSheet.create({
     width: "50%",
   },
   wrapperView: {
+    flex: 1,
     backgroundColor: "white",
     alignItems: "center",
     paddingLeft: 12,
     paddingRight: 12,
+    paddingBottom: 15
   },
 });
 
@@ -1042,7 +1044,7 @@ export const UserListStyles = StyleSheet.create({
     paddingLeft: 10,
   },
   headerText: {
-    fontSize: 8,
+    fontSize: 10,
     color: 'white'
   },
   numTextView: {
@@ -1140,7 +1142,7 @@ export const SideMenuStyles = StyleSheet.create({
     fontFamily: 'montserrat-bold',
     padding: 3,
     color: 'white',
-    fontSize: 12,
+    fontSize: 14,
     marginLeft: '12%'
   },
   helpText: {

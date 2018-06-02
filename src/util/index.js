@@ -9,7 +9,7 @@ export { default as store } from './store';
 export { default as fragmentMatcher } from './fragmentTypes';
 export { default as client } from './client'
 export { prevRates } from './rates';
-export { number, required, emailValidate } from './validation';
+export { number, required, emailValidate, passwordValidate } from './validation';
 export {
   ADD_BDC_RATE,
   AUTHENTICATE_USER,

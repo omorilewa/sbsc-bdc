@@ -24,6 +24,7 @@ import {
   locationId,
   required,
   number,
+  passwordValidate,
 } from '../util';
 import Modal from 'react-native-modal';
 
@@ -286,7 +287,7 @@ class CreateUserForm extends Component {
                   name="password"
                   style={styles.inputField}
                   component={LineInput}
-                  validate={[required]}
+                  validate={[required, passwordValidate]}
                   secureTextEntry
                 />
               </View>
@@ -296,7 +297,7 @@ class CreateUserForm extends Component {
                   name="confirm-password"
                   style={styles.inputField}
                   component={LineInput}
-                  validate={[required]}
+                  validate={[required, passwordValidate]}
                   secureTextEntry
                 />
               </View>

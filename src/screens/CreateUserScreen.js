@@ -8,7 +8,7 @@ import {
 } from '../components';
 import { NewRateStyles as styles } from '../styles';
 
-class ManageUserScreen extends Component {
+class CreateUserScreen extends Component {
   static navigationOptions = {
     title: 'manageUsers',
   };
@@ -19,7 +19,7 @@ class ManageUserScreen extends Component {
         <SuperHeader />
         <View style={styles.flex}>
           <TabNavigator
-            initialRouteName={'TabTwo'}
+            initialRouteName={'TabOne'}
             screenOne={CreateUserPage}
             screenTwo={ManageUsersPage}
           />
@@ -29,4 +29,4 @@ class ManageUserScreen extends Component {
   }
 }
 
-export default ManageUserScreen;
+export default CreateUserScreen;
