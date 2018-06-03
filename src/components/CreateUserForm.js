@@ -154,13 +154,13 @@ class CreateUserForm extends Component {
       }));
       return;
     }
-    if (value['confirm-password'] !== password) {
+    if ((value['confirm-password']).trim() !== password.trim()) {
       this.setState(() => ({
         passwordMatchError: true,
       }));
       return;
     }
-    if (value['confirm-password'] === password) {
+    if ((value['confirm-password']).trim() === password.trim()) {
       this.setState(() => ({
         passwordMatchError: false,
       }));
@@ -210,18 +210,18 @@ class CreateUserForm extends Component {
         scrollify,
         showLocation,
         visibleHeight,
-        phoneNumber,
         locationId,
-        password
       },
       onClickDropDown,
       onClickLocationDropDown
     } = this;
 
-    const firstName = _.startCase(_.toLower(this.state.firstName));
-    const lastName = _.startCase(_.toLower(this.state.lastName));
-    const username = _.toLower(this.state.username);
-    const email = _.toLower(this.state.email);
+    const firstName = _.startCase(_.toLower(this.state.firstName)).trim();
+    const lastName = _.startCase(_.toLower(this.state.lastName)).trim();
+    const username = _.toLower(this.state.username).trim();
+    const email = _.toLower(this.state.email).trim();
+    const password = this.state.password.trim();
+    const phoneNumber = this.state.phoneNumber.trim();
 
     return (
       <View style={{ height: visibleHeight }}>
