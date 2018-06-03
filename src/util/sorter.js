@@ -28,6 +28,7 @@ export const transformData = (rawData) => {
 
     return Object.values(mapDataToObject);
   }
+  return null;
 }
 
 export const sortRates = (rateObject) => {
@@ -56,7 +57,7 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  const conditionsSatisfied = rawData.usersConnection !== undefined &&
+  const conditionsSatisfied = !!rawData.usersConnection &&
   Array.isArray(rawData.usersConnection.edges) && rawData.usersConnection.edges !== [];
   if (conditionsSatisfied) {
     const rawDataCopy = rawData.usersConnection.edges.slice() || [];
