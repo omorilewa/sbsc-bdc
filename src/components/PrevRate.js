@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { array } from "prop-types";
+import { array, string, func } from "prop-types";
 import { View, TouchableOpacity, FlatList } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 import moment from 'moment';
@@ -8,7 +8,9 @@ import { PrevRateStyles as styles } from "../styles";
 
 class PrevRate extends PureComponent {
   static propTypes = {
-    prevRateData: array.isRequired
+    prevRateData: array.isRequired,
+    fetchMore: func,
+    endCursor: string,
   }
 
   state = {
@@ -105,8 +107,13 @@ class PrevRate extends PureComponent {
               fetchMore({
                 variables: { cursor: endCursor },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
-                  if (fetchMoreResult) {
-                    const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
+                  const nestedObjectIsValid = !!fetchMoreResult &&
+                    !!fetchMoreResult.viewer &&
+                    !!fetchMoreResult.viewer.user &&
+                    !!fetchMoreResult.viewer.user.previousRatesConnection;
+
+                  if (nestedObjectIsValid) {
+                    const { edges: newEdges = [], pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
                     return newEdges.length
                       ? {
                         viewer: {
