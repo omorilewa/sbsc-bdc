@@ -12,8 +12,7 @@ import { HomeScreenStyles as styles } from "../styles";
 import RenderInput from "../components/RenderInput";
 import { StyledText as Text } from ".";
 import Loader from "./Loader";
-import { AUTHENTICATE_USER, removeItem } from '../util';
-
+import { AUTHENTICATE_USER, removeItem, client, persistor } from '../util';
 class Home extends PureComponent {
   static propTypes = {
     error: bool,
@@ -94,6 +93,8 @@ class Home extends PureComponent {
                         await login({
                           variables: { usernameOrEmail, password }
                         });
+                        client.resetStore();
+                        persistor.resume();
                       } else {
                         return;
                       }

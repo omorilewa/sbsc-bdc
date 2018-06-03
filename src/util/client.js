@@ -5,6 +5,8 @@ import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { getItem, fragmentMatcher } from '.';
+import { CachePersistor } from 'apollo-cache-persist';
+import { AsyncStorage } from 'react-native';
 
 const uri = 'https://bdc-api.herokuapp.com/api/graphql';
 
@@ -40,6 +42,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const link = ApolloLink.from([authLink, errorLink, httpLink]);
 
 const cache = new InMemoryCache({ fragmentMatcher });
+
+export const persistor = new CachePersistor({
+  cache,
+  storage: AsyncStorage,
+});
 
 const client = new ApolloClient({
   link,

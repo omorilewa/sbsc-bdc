@@ -7,7 +7,7 @@ import {
   Image,
 } from 'react-native';
 import { SideMenuStyles as styles } from '../styles';
-import { getItem, clearStorage } from '../util';
+import { getItem, clearStorage, persistor, client} from '../util';
 import { StyledText as Text, SideMenuItemWrapper } from '.';
 
 class SideMenu extends PureComponent {
@@ -136,6 +136,9 @@ class SideMenu extends PureComponent {
                   onPress={() => {
                     navigate('Main');
                     clearStorage();
+                    persistor.pause();
+                    persistor.purge();
+                    client.resetStore();
                   }}>
                   <Text style={styles.logoutText}>LOG OUT</Text>
                 </SideMenuItemWrapper>
