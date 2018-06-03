@@ -74,7 +74,7 @@ export const transformUsers = (rawData) => {
       return acc;
     }, [])
   }
-  return;
+  return null;
 }
 
 export const locationId = (data, location) => {
