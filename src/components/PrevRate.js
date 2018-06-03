@@ -105,7 +105,7 @@ class PrevRate extends PureComponent {
               fetchMore({
                 variables: { cursor: endCursor },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
-                  if (fetchMoreResult) {
+                  if (fetchMoreResult.viewer) {
                     const { edges: newEdges, pageInfo } = fetchMoreResult.viewer.user.previousRatesConnection;
                     return newEdges.length
                       ? {

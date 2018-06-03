@@ -7,7 +7,7 @@ export {
 } from './asyncStorageUtils';
 export { default as store } from './store';
 export { default as fragmentMatcher } from './fragmentTypes';
-export { default as client } from './client'
+export { default as client, persistor  } from './client'
 export { prevRates } from './rates';
 export { number, required, emailValidate, passwordValidate } from './validation';
 export {
