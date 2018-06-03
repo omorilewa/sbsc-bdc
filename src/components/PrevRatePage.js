@@ -27,12 +27,17 @@ class PrevRatePage extends Component {
           if (error) {
             return <ErrorComponent errorText="Unable to retrieve data" />
           }
-          return (
-            <PrevRate
-              prevRateData={transformData(data.viewer.user.previousRatesConnection.edges)}
-              fetchMore={fetchMore}
-              endCursor={data.viewer.user.previousRatesConnection.pageInfo.endCursor} />
-          );
+          if (data && !!data.viewer && !!data.viewer.user && !!data.viewer.user.previousRatesConnection) {
+            const { edges = [], pageInfo: { endCursor = '' } } = data.viewer.user.previousRatesConnection;
+            const prevRateData = transformData(edges);
+            return (
+              <PrevRate
+                prevRateData={prevRateData}
+                fetchMore={fetchMore}
+                endCursor={endCursor}
+              />
+            );
+          }
         }}
       </Query>
     );
