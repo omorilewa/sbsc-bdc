@@ -85,9 +85,10 @@ class Home extends PureComponent {
                     style={styles.buttonBody}
                     onPress={handleSubmit(async (values) => {
                       if (!!values && typeof values === 'object' && Object.keys(values).every(item => !!item)) {
-                        const { password } = values;
+                        let { password } = values;
                         let { usernameOrEmail } = values;
-                        usernameOrEmail = usernameOrEmail.toLowerCase();
+                        password = password.trim();
+                        usernameOrEmail = usernameOrEmail.toLowerCase().trim();
                         removeItem('token');
                         removeErrorText();
                         await login({
