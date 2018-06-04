@@ -7,7 +7,7 @@ class NoRates extends PureComponent {
   render() {
     return (
       <View style={styles.noRatesWrapper}>
-        <Text style={styles.noRatesText}>No rates entered yet.</Text>
+        <Text style={styles.noRatesText}>No rates available.</Text>
       </View>
     );
   }
