@@ -27,4 +27,4 @@ export { default as UsersTableHeader } from './UsersTableHeader';
 export { default as UserListItem } from './UserListItem';
 export { default as ManageUsers } from './ManageUsers';
 export { default as ManageUsersPage } from './ManageUsersPage';
-export { default as SideMenu } from './SideMenu';
+export { default as SideMenu, logoutUser } from './SideMenu';

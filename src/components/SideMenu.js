@@ -10,6 +10,13 @@ import { SideMenuStyles as styles } from '../styles';
 import { getItem, clearStorage, persistor, client} from '../util';
 import { StyledText as Text, SideMenuItemWrapper } from '.';
 
+export const logoutUser = () => {
+  clearStorage();
+  persistor.pause();
+  persistor.purge();
+  client.resetStore();
+}
+
 class SideMenu extends PureComponent {
   static propTypes = {
     navigation: PropTypes.object
@@ -135,10 +142,7 @@ class SideMenu extends PureComponent {
                   underlayColor='#004900'
                   onPress={() => {
                     navigate('Main');
-                    clearStorage();
-                    persistor.pause();
-                    persistor.purge();
-                    client.resetStore();
+                    logoutUser();
                   }}>
                   <Text style={styles.logoutText}>LOG OUT</Text>
                 </SideMenuItemWrapper>
