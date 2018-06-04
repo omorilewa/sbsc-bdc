@@ -3,12 +3,12 @@ import { array, string, func } from "prop-types";
 import { View, TouchableOpacity, FlatList } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 import moment from 'moment';
-import { StyledText as Text, RatesByPeriod } from ".";
+import { StyledText as Text, RatesByPeriod, NoRates } from ".";
 import { PrevRateStyles as styles } from "../styles";
 
 class PrevRate extends PureComponent {
   static propTypes = {
-    prevRateData: array.isRequired,
+    prevRateData: array,
     fetchMore: func,
     endCursor: string,
   }
@@ -101,6 +101,7 @@ class PrevRate extends PureComponent {
         </View>
         <FlatList
           data={prevRateData}
+          ListEmptyComponent={NoRates}
           keyExtractor={(item, index) => index.toString()}
           onEndReached={() => {
             if (!this.state.isFiltering) {
