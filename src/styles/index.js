@@ -510,6 +510,16 @@ export const PrevRateStyles = StyleSheet.create({
   errorView: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  noRatesText: {
+    fontSize: 16,
+    color: 'black'
+  },
+  noRatesWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 200
   }
 });
 

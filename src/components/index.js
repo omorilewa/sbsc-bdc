@@ -10,6 +10,7 @@ export { default as SubHeader } from './SubHeader';
 export { default as NewRateForm } from './NewRateForm';
 export { default as NewRatePage } from './NewRatePage';
 export { default as RatesByPeriod } from './RatesByPeriod';
+export { default as NoRates } from './NoRates';
 export { default as PrevRate } from './PrevRate';
 export { default as PrevRatePage } from './PrevRatePage';
 export { default as TabNavigator } from './TabNavigator';
