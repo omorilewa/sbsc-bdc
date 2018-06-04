@@ -4,28 +4,31 @@ import gbp from "../assets/images/gbp.png";
 import yen from "../assets/images/yen.png"
 
 export const transformData = (rawData) => {
-  const mapDataToObject =
-    rawData.reduce((acc, curr) => {
-      const accValue = acc[curr.node.date] || {
-        date: curr.node.date
-      };
+  if(!!rawData){
+    const mapDataToObject =
+      rawData.reduce((acc, curr) => {
+        const accValue = acc[curr.node.date] || {
+          date: curr.node.date
+        };
 
-      const currPeriod = curr.node.rate.periodOfDay.toLowerCase();
+        const currPeriod = curr.node.rate.periodOfDay.toLowerCase();
 
-      if (currPeriod === 'morning') {
-        accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr)
-      }
-      if (currPeriod === 'afternoon') {
-        accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr);
-      }
-      if (currPeriod === 'evening') {
-        accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr);
-      }
-      acc[curr.node.date] = accValue;
-      return acc;
-    }, {})
+        if (currPeriod === 'morning') {
+          accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr)
+        }
+        if (currPeriod === 'afternoon') {
+          accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr);
+        }
+        if (currPeriod === 'evening') {
+          accValue[currPeriod] = (accValue[currPeriod] || []).concat(curr);
+        }
+        acc[curr.node.date] = accValue;
+        return acc;
+      }, {})
 
-  return Object.values(mapDataToObject);
+    return Object.values(mapDataToObject);
+  }
+  return null;
 }
 
 export const sortRates = (rateObject) => {
@@ -54,7 +57,7 @@ export const sortLocation = (data) => {
 }
 
 export const transformUsers = (rawData) => {
-  const conditionsSatisfied = rawData.usersConnection !== undefined &&
+  const conditionsSatisfied = !!rawData.usersConnection &&
   Array.isArray(rawData.usersConnection.edges) && rawData.usersConnection.edges !== [];
   if (conditionsSatisfied) {
     const rawDataCopy = rawData.usersConnection.edges.slice() || [];
@@ -71,7 +74,7 @@ export const transformUsers = (rawData) => {
       return acc;
     }, [])
   }
-  return;
+  return null;
 }
 
 export const locationId = (data, location) => {

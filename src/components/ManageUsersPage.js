@@ -32,12 +32,13 @@ class ManageUsersPage extends PureComponent {
             return <ErrorComponent errorText="Error while fetching users" />;
           }
           if (data) {
+            const endCursorIsTruthy = !!data.usersConnection && !!data.usersConnection.pageInfo
             const transformedUsers = transformUsers(data);
             return (
               <ManageUsers
                 usersData={transformedUsers}
                 fetchMore={fetchMore}
-                endCursor={data.usersConnection.pageInfo.endCursor}
+                endCursor={endCursorIsTruthy && data.usersConnection.pageInfo.endCursor}
               />
             );
           }
