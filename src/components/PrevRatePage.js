@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { PrevRate, ErrorComponent, NoRates } from '.';
+import { PrevRate, ErrorComponent } from '.';
 import { transformData, PREV_RATES } from '../util';
 import { View } from 'native-base';
 import { Query } from 'react-apollo';
