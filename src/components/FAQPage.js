@@ -86,13 +86,13 @@ class FAQPage extends Component {
         <View style={styles.textView}>
           <Text style={styles.footer}>{textObject.second}</Text>
         </View>
-          <TouchableHighlight
+          {/* <TouchableHighlight
             underlayColor="#19B01D"
             style={styles.buttonBody}
             onPress={showModal}
           >
             <Text style={styles.buttonText}>{textObject.third}</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </ScrollView>
         <Modal
           isVisible={modalVisible === 1}
