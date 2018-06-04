@@ -39,7 +39,7 @@ class App extends Component {
             <PrimaryNavigator />
             <FlashMessage
               position="bottom"
-              duration={3000}
+              duration={1500}
               style={styles.flash}
               titleStyle={styles.flashText}
             />
