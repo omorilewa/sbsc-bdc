@@ -42,7 +42,6 @@ class App extends Component {
           tabScreen && tabScreen.routeName === 'DrawerClose'
         ) {
           const newRoutes = state.routes.filter(r => {
-            console.log('yadadada', r.routeName)
             return r.routeName !== 'Main'});
           const newIndex = newRoutes.length - 1;
           return defaultGetStateForAction(action, {
