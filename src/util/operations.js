@@ -127,7 +127,7 @@ export const PREV_RATES = gql`
 
 
 export const ADD_BDC_RATE = gql`
-  mutation newRate($buyRate: Float!, $sellRate: Float!, $currency: CURRENCY!) {
+  mutation newRate($buyRate: PositiveFloat!, $sellRate: PositiveFloat!, $currency: CURRENCY!) {
     newBDCRate(data: {
       buyRate: $buyRate
       sellRate: $sellRate
