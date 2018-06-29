@@ -33,8 +33,8 @@ class NewRateForm extends PureComponent {
   state = {
     selected: "USD",
     isVisible: false,
-    buyRate: '',
-    sellRate: '',
+    buyRate: 0.00,
+    sellRate: 0.00,
     errored: '',
     errorText: '',
     disabled: false,
@@ -152,7 +152,7 @@ class NewRateForm extends PureComponent {
                 style={styles.inputField}
                 component={LineInput}
                 placeholder="Enter rate"
-                maxLength={3}
+                maxLength={7}
                 keyboardType="numeric"
                 validate={[required, number]}
               />
@@ -164,7 +164,7 @@ class NewRateForm extends PureComponent {
                 style={styles.inputField}
                 component={LineInput}
                 placeholder="Enter rate"
-                maxLength={3}
+                maxLength={7}
                 keyboardType="numeric"
                 validate={[required, number]}
               />
@@ -218,7 +218,10 @@ class NewRateForm extends PureComponent {
                             onPress={async () => {
                               if (!!buyRate && !!sellRate && !!selected) {
                                 await newBDCRate({
-                                  variables: { buyRate, sellRate, currency: selected },
+                                  variables: {
+                                     buyRate: Number(buyRate).toFixed(2),
+                                     sellRate: Number(sellRate).toFixed(2),
+                                     currency: selected },
                                   refetchQueries: [{ query: PREV_RATES }]
                                 });
                                 showMessage({
@@ -234,7 +237,8 @@ class NewRateForm extends PureComponent {
                             <Text style={styles.button1}>CONTINUE</Text>
                           </SideMenuItemWrapper>
                           {loading && <Loader loading={loading} />}
-                          {error && <ErrorComponent errorText="An error occured while adding new rate" />}
+                          <View>
+                          </View>
                         </Fragment>
                       )}
                     </Mutation>
