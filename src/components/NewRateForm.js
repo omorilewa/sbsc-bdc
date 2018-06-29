@@ -152,7 +152,7 @@ class NewRateForm extends PureComponent {
                 style={styles.inputField}
                 component={LineInput}
                 placeholder="Enter rate"
-                maxLength={3}
+                maxLength={7}
                 keyboardType="numeric"
                 validate={[required, number]}
               />
@@ -164,7 +164,7 @@ class NewRateForm extends PureComponent {
                 style={styles.inputField}
                 component={LineInput}
                 placeholder="Enter rate"
-                maxLength={3}
+                maxLength={7}
                 keyboardType="numeric"
                 validate={[required, number]}
               />
