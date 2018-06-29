@@ -11,6 +11,7 @@ import {
   CreateUserScreen,
   ManageUserScreen,
   FAQScreen,
+  UpdateScreen
 } from '../screens';
 import { StyledText as Text, SideMenu } from '../components';
 
@@ -34,6 +35,7 @@ export const DrawerStack = DrawerNavigator({
   CreateUser: { screen: CreateUserScreen},
   ManageUsers: { screen: ManageUserScreen},
   Configuration: { screen: RateBoundariesScreen },
+  Update: {screen: UpdateScreen},
   Help: { screen: FAQScreen },
 },
  {

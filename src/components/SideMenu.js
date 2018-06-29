@@ -104,13 +104,13 @@ class SideMenu extends PureComponent {
           {/* {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
-              <View style={styles.label}>
-                <Image
-                  style={styles.configIcon}
-                  source={require(`../assets/images/icon_settings.png`)}
-                />
-                <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
-              </View>
+            <View style={styles.label}>
+            <Image
+            style={styles.configIcon}
+            source={require(`../assets/images/icon_settings.png`)}
+            />
+            <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
+            </View>
             </SideMenuItemWrapper>
           } */}
           {
@@ -120,11 +120,20 @@ class SideMenu extends PureComponent {
                 <Image
                   style={styles.icon}
                   source={require(`../assets/images/icon_help.png`)}
-                />
+                  />
                 <Text style={[styles.menuItemsText, styles.helpText]}>HELP</Text>
               </View>
             </SideMenuItemWrapper>
           }
+            <SideMenuItemWrapper onPress={navigateToScreen('Update')} underlayColor="#004900">
+              <View style={styles.label}>
+                <Image
+                  style={styles.configIcon}
+                  source={require(`../assets/images/icon_settings.png`)}
+                />
+                <Text style={[styles.menuItemsText, styles.helpText]}>UPDATE</Text>
+              </View>
+            </SideMenuItemWrapper>
         </ScrollView>
 
         <View style={styles.footer}>
