@@ -15,6 +15,7 @@ export { default as PrevRate } from './PrevRate';
 export { default as PrevRatePage } from './PrevRatePage';
 export { default as TabNavigator } from './TabNavigator';
 export { default as PeriodPicker } from './PeriodPicker';
+export { default as UpdatePage } from './UpdatePage';
 export { default as Update } from './Update';
 export { default as RateBoundariesForm } from './RateBoundariesForm';
 export { default as RateBoundaries } from './RateBoundariesPage';
