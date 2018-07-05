@@ -176,7 +176,7 @@ export const FETCH_USERS = gql`
 `;
 
 export const FETCH_APKS = gql`
-query alladminapk{
+query allAdminApk{
   allAdminAppApks{
     name
     url
