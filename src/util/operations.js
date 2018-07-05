@@ -174,3 +174,12 @@ export const FETCH_USERS = gql`
     }
   }
 `;
+
+export const FETCH_APKS = gql`
+query allAdminApk{
+  allAdminAppApks{
+    name
+    url
+  }
+}
+`

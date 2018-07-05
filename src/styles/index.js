@@ -1179,3 +1179,40 @@ export const SideMenuStyles = StyleSheet.create({
   },
 });
 
+export const UpdateApkStyles = StyleSheet.create({
+  modalBackground: {
+    flex: 1,
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  spinner: {
+    height: 100,
+    width: 100,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  listBGColor: {
+    backgroundColor: '#e5ece5',
+  },
+  usersView: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10
+  },
+  wrapperView: {
+    backgroundColor: "white",
+  },
+  text: {
+    fontSize: 15,
+    color: 'black',
+    fontFamily: "montserrat"
+  },
+  wordingView: {
+    marginBottom: 10
+  },
+  wording: {
+    fontSize: 13,
+  }
+})
