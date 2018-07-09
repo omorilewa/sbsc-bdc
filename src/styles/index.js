@@ -617,9 +617,6 @@ export const PeriodPickerStyles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "montserrat-bold",
   },
-  wrapper: {
-    // width: "33%",
-  },
   timeDisplay: {
     fontSize: 16
   },

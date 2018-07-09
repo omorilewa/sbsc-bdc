@@ -24,7 +24,7 @@ class PeriodPicker extends PureComponent {
     const { timeOfDay, selectedValue } = this.props;
 
     return (
-      <View style={styles.wrapper}>
+      <View>
         <Label style={styles.pickerLabel}>{`${timeOfDay}:`}</Label>
         <View style={styles.pickerSection}>
           <Icon
