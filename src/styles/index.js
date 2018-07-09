@@ -524,6 +524,30 @@ export const PrevRateStyles = StyleSheet.create({
 });
 
 export const RateBoundariesStyles = StyleSheet.create({
+  dropdown: {
+    width: '45%',
+    margin: 0,
+    padding: 0,
+    alignItems: 'center',
+    flexDirection:'row'
+  },
+  dropdownText: {
+    fontFamily: "montserrat-light",
+    fontSize: 9,
+  },
+  modal: {
+    marginBottom: 0,
+  },
+  hr: {
+    borderBottomColor: '#9c9e9f',
+    borderBottomWidth: 0.9,
+    width: 50,
+  },
+  modalView: {
+    alignItems:'center',
+    flexDirection:'row',
+    justifyContent: 'space-between'
+  },
   formLabel: {
     color: "#3E3E3E",
     fontSize: 11,
@@ -552,6 +576,12 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "montserrat-bold",
   },
+  pickerButton: {
+    color: "black",
+    fontSize: 12,
+    fontFamily: "montserrat-bold",
+    textAlign: 'center',
+  },
   buttonBody: {
     borderRadius: 30,
     marginTop: 40,
@@ -561,9 +591,10 @@ export const RateBoundariesStyles = StyleSheet.create({
     justifyContent: 'center'
   },
   titleText: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: "montserrat",
-    color: "#1AB21E"
+    color: "#1AB21E",
+    marginBottom: 15,
   },
   postScheduleText: {
     fontSize: 11,

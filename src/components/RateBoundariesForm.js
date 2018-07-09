@@ -1,12 +1,13 @@
 import React, { PureComponent } from "react";
 import { func } from "prop-types";
-import { View, TouchableHighlight } from "react-native";
+import { View, TouchableHighlight, TouchableOpacity } from "react-native";
+import ModalDropdown from 'react-native-modal-dropdown';
+
 import { Label } from "native-base";
-import { Field } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 import {
   LineInput,
   StyledText as Text,
-  PeriodPicker,
 } from ".";
 import { RateBoundariesStyles as styles } from "../styles";
 import { required, number } from '../util';
@@ -17,47 +18,68 @@ class RateBoundariesForm extends PureComponent {
   }
 
   state = {
-    morningSelection: "",
-    afternoonSelection: "",
-    eveningSelection: ""
+    currency: 'USD',
+    leastBuyRate: '',
+    leastSellRate: '',
+    greatestBuyRate: '',
+    greatestSellRate: '',
   }
 
-  morningChange = (value) => {
-    this.setState((state) => {
-      return {
-        morningSelection: value
-      }
-    })
+  onClickDropDown = (value) => {
+    console.log('=====', value);
+    this.setState(() => ({
+      currency: value,
+    }))
   }
 
-  afternoonChange = (value) => {
-    this.setState((state) => {
-      return {
-        afternoonSelection: value
-      }
-    })
-  }
+  onSubmit = (values) => {
+    const {
+      leastBuyRate,
+      leastSellRate,
+      greatestBuyRate,
+      greatestSellRate,
+    } = values;
 
-  eveningChange = (value) => {
-    this.setState((state) => {
-      return {
-        eveningSelection: value
-      }
-    })
+    console.log('===========>', values);
+
+    this.setState(() => ({
+      leastBuyRate,
+      leastSellRate,
+      greatestBuyRate,
+      greatestSellRate,
+    }), () => console.log('MANDEM'))
+
   }
 
   render() {
-    const {
-      state: { morningSelection, afternoonSelection, eveningSelection },
-      eveningChange, afternoonChange, morningChange } = this;
-
+    const { onClickDropDown, onSubmit } = this;
     return (
       <View style={styles.main}>
         <Text style={styles.titleText}>Set Rate Boundaries:</Text>
+        <View style={styles.modalView}>
+          <Text style={styles.formLabel}>Select Currency: </Text>
+          <View>
+            <ModalDropdown ref={(el) => { this.dropDown = el }}
+              options={["USD", "GBP", "YEN", "EUR"]}
+              defaultValue={"USD"}
+              style={styles.modal}
+              textStyle={styles.pickerButton}
+              dropdownStyle={styles.dropdown}
+              dropdownTextStyle={styles.dropdownText}
+              adjustFrame={(style) => {
+                style.height = 88;
+                style.top = 144;
+                return style;
+              }}
+              onSelect={(index, value) => { onClickDropDown(value) }}
+            />
+            <View style={styles.hr}></View>
+          </View>
+        </View>
         <View style={styles.fieldView}>
-          <Label style={styles.formLabel}>Least:</Label>
+          <Label style={styles.formLabel}>Least Buy Rate:</Label>
           <Field
-            name="least-rate"
+            name="leastBuyRate"
             style={styles.inputField}
             component={LineInput}
             placeholder="Enter rate"
@@ -66,9 +88,9 @@ class RateBoundariesForm extends PureComponent {
           />
         </View>
         <View style={styles.fieldView}>
-          <Label style={styles.formLabel}>Greatest:</Label>
+          <Label style={styles.formLabel}>Greatest Buy Rate:</Label>
           <Field
-            name="greatest-rate"
+            name="greatestBuyRate"
             style={styles.inputField}
             component={LineInput}
             placeholder="Enter rate"
@@ -76,25 +98,29 @@ class RateBoundariesForm extends PureComponent {
             validate={[required, number]}
           />
         </View>
-        <Text style={styles.postScheduleText}>Post Schedule:</Text>
-        <View style={styles.pickersView}>
-          <PeriodPicker
-            timeOfDay="Morning"
-            selectedValue={morningSelection}
-            onValueChange={morningChange}
-          />
-          <PeriodPicker
-            timeOfDay="Afternoon"
-            selectedValue={afternoonSelection}
-            onValueChange={afternoonChange}
-          />
-          <PeriodPicker
-            timeOfDay="Evening"
-            selectedValue={eveningSelection}
-            onValueChange={eveningChange}
+        <View style={styles.fieldView}>
+          <Label style={styles.formLabel}>Least Sell Rate:</Label>
+          <Field
+            name="leastSellRate"
+            style={styles.inputField}
+            component={LineInput}
+            placeholder="Enter rate"
+            maxLength={3}
+            validate={[required, number]}
           />
         </View>
-        <TouchableHighlight style={styles.buttonBody} underlayColor="#19B01D">
+        <View style={styles.fieldView}>
+          <Label style={styles.formLabel}>Greatest Sell Rate:</Label>
+          <Field
+            name="greatestSellRate"
+            style={styles.inputField}
+            component={LineInput}
+            placeholder="Enter rate"
+            maxLength={3}
+            validate={[required, number]}
+          />
+        </View>
+        <TouchableHighlight style={styles.buttonBody} underlayColor="#19B01D" onPress={onSubmit}>
           <Text style={styles.buttonText}>Save settings</Text>
         </TouchableHighlight>
       </View>
@@ -102,4 +128,8 @@ class RateBoundariesForm extends PureComponent {
   }
 };
 
-export default RateBoundariesForm;
+const withReduxForm = reduxForm({
+  form: 'rate-boundaries'
+})
+
+export default withReduxForm(RateBoundariesForm);
