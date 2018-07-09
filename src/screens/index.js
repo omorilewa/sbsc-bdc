@@ -6,3 +6,4 @@ export { default as RateBoundariesScreen } from './RateBoundariesScreen';
 export { default as FAQScreen } from './FAQScreen';
 export { default as ManageUserScreen } from './ManageUserScreen';
 export { default as CreateUserScreen } from './CreateUserScreen';
+export { default as PostScheduleScreen } from './PostScheduleScreen';

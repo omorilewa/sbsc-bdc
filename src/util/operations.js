@@ -82,6 +82,15 @@ export const APPROVE_USER = gql`
   }
 `;
 
+export const UPDATE_PERIOD = gql`
+mutation updatePeriodTimes($timePeriods: [PeriodTimeInput!]!) {
+  updatePeriodTimes(data: $timePeriods) {
+    value
+    timeOfTheDay
+  }
+}
+`;
+
 export const DEACTIVATE_USER = gql`
   mutation deactivateUser($userId: ID!) {
     deactivateUser(userId: $userId){

@@ -530,6 +530,14 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontFamily: "montserrat-bold",
     marginBottom: 7,
   },
+  timePicker: {
+    width: '30%',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 13,
+    marginTop: 10
+  },
   bg: {
     backgroundColor: 'white',
     height: '100%'
@@ -549,12 +557,13 @@ export const RateBoundariesStyles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: "montserrat-bold",
   },
   buttonBody: {
-    borderRadius: 30,
-    marginTop: 40,
+    width: '100%',
+    borderRadius: 5,
+    marginTop: 10,
     height: 40,
     backgroundColor: "#1AB21E",
     alignItems: 'center',
@@ -566,20 +575,16 @@ export const RateBoundariesStyles = StyleSheet.create({
     color: "#1AB21E"
   },
   postScheduleText: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: "montserrat",
     color: "#1AB21E",
     marginTop: 25,
     marginBottom: 15,
   },
   pickersView: {
+    width: '100%',
     flexDirection: "row",
     justifyContent: "space-between"
-  },
-  pickerLabel: {
-    color: "#3E3E3E",
-    fontSize: 11,
-    fontFamily: "montserrat-bold",
   },
   fieldView: {
     marginTop: 30
@@ -609,16 +614,27 @@ export const RateBoundariesStyles = StyleSheet.create({
 export const PeriodPickerStyles = StyleSheet.create({
   pickerLabel: {
     color: "#3E3E3E",
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: "montserrat-bold",
   },
-  wrapper: {
-    width: "25%",
+  timeDisplay: {
+    fontSize: 16
+  },
+  textView: {
+    height: 25,
+    marginTop: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    width: '100%',
+  },
+  timePicker: {
+    width: '30%'
   },
   pickerIcon: {
-    fontSize: 10,
+    fontSize: 25,
     color: '#1AB21E',
-    marginTop: 18,
+    marginTop: 12,
+    marginRight: 6
   },
   picker: {
     width: '80%',

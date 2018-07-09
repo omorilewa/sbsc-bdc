@@ -101,18 +101,30 @@ class SideMenu extends PureComponent {
               </View>
             </SideMenuItemWrapper>
           }
-          {/* {
+          {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
-            <View style={styles.label}>
-            <Image
-            style={styles.configIcon}
-            source={require(`../assets/images/icon_settings.png`)}
-            />
-            <Text style={[styles.menuItemsText, styles.helpText]}>CONFIGURATION</Text>
-            </View>
+              <View style={styles.label}>
+                <Image
+                  style={styles.configIcon}
+                  source={require(`../assets/images/icon_settings.png`)}
+                />
+                <Text style={[styles.menuItemsText, styles.helpText]}>RATE BOUNDARIES</Text>
+              </View>
             </SideMenuItemWrapper>
-          } */}
+          }
+          {
+            isAdmin &&
+            <SideMenuItemWrapper onPress={navigateToScreen('PostSchedule')} underlayColor="#004900">
+              <View style={styles.label}>
+                <Image
+                  style={styles.configIcon}
+                  source={require(`../assets/images/icon_settings.png`)}
+                />
+                <Text style={[styles.menuItemsText, styles.helpText]}>POST SCHEDULE</Text>
+              </View>
+            </SideMenuItemWrapper>
+          }
           <SideMenuItemWrapper onPress={navigateToScreen('Update')} underlayColor="#004900">
             <View style={styles.label}>
               <Image
