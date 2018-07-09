@@ -15,24 +15,29 @@ import { UPDATE_PERIOD } from '../util';
 import { SubHeader, StyledText as Text, PeriodPicker } from '.';
 import { RateBoundariesStyles as styles } from "../styles";
 
+const initialState = {
+  presetHour: 1,
+  presetMinute: 0,
+  morningSelection: {},
+  afternoonSelection: {},
+  eveningSelection: {},
+  rawMoment: {
+    MORNING: '',
+    AFTERNOON: '',
+    EVENING: '',
+  },
+  isValid: true,
+  MORNING: '',
+  AFTERNOON: '',
+  EVENING: '',
+}
+
 class PostSchedule extends PureComponent {
   static propTypes = {
     handleSubmit: func,
   }
 
-  state = {
-    presetHour: 1,
-    presetMinute: 0,
-    morningSelection: {},
-    afternoonSelection: {},
-    eveningSelection: {},
-    rawMoment: {
-      MORNING: '',
-      AFTERNOON: '',
-      EVENING: '',
-    },
-    isValid: true
-  }
+  state = {...initialState}
 
   _formatTime = (hour, minute) => {
     const normalizedMinute = minute < 10 ? '0' + minute : minute;
@@ -57,15 +62,7 @@ class PostSchedule extends PureComponent {
   }
 
   clearForm = () => {
-    this.setState(() => ({
-      MORNING: "",
-      AFTERNOON: "",
-      EVENING: "",
-      morningSelection: {},
-      afternoonSelection: {},
-      eveningSelection: {},
-      isValid: true
-    }))
+    this.setState(() => (initialState))
     showMessage({
       message: "Schedule successfully updated",
       type: "success",
