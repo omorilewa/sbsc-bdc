@@ -248,12 +248,12 @@ class RateBoundariesForm extends PureComponent {
           </Mutation>
         </ScrollView>
       </View>
-    );
-  }
-};
+        );
+      }
+    };
 
 const withReduxForm = reduxForm({
-  form: 'rate-boundaries'
-})
+          form: 'rate-boundaries'
+      })
 
-export default withReduxForm(RateBoundariesForm);
+      export default withReduxForm(RateBoundariesForm);
