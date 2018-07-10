@@ -525,15 +525,19 @@ export const PrevRateStyles = StyleSheet.create({
 
 export const RateBoundariesStyles = StyleSheet.create({
   dropdown: {
-    width: '45%',
+    width: '18%',
     margin: 0,
     padding: 0,
     alignItems: 'center',
     flexDirection:'row'
   },
+  locationDropdown:  {
+    width: '25%'
+  },
   dropdownText: {
     fontFamily: "montserrat-light",
-    fontSize: 9,
+    fontSize: 13,
+    color: 'black'
   },
   modal: {
     marginBottom: 0,
@@ -546,11 +550,12 @@ export const RateBoundariesStyles = StyleSheet.create({
   modalView: {
     alignItems:'center',
     flexDirection:'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: 20
   },
   formLabel: {
     color: "#3E3E3E",
-    fontSize: 11,
+    fontSize: 13,
     fontFamily: "montserrat-bold",
     marginBottom: 7,
   },
@@ -562,6 +567,11 @@ export const RateBoundariesStyles = StyleSheet.create({
   contentContainer: {
     paddingLeft: 10,
     paddingRight: 10
+  },
+  contentCon: {
+    flexGrow: 1,
+    // padding: 10,
+    paddingBottom: 100
   },
   timePicker: {
     width: '30%',
@@ -583,10 +593,8 @@ export const RateBoundariesStyles = StyleSheet.create({
     paddingBottom: 15
   },
   main: {
-    marginTop: '10%',
-    width: '74%',
-    marginHorizontal: "13%",
-    height: '100%'
+    marginTop: 20,
+    marginHorizontal: "6%",
   },
   buttonText: {
     color: "white",
@@ -595,7 +603,7 @@ export const RateBoundariesStyles = StyleSheet.create({
   },
   pickerButton: {
     color: "black",
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: "montserrat-bold",
     textAlign: 'center',
   },
@@ -612,7 +620,6 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "montserrat",
     color: "#1AB21E",
-    marginBottom: 15,
   },
   postScheduleText: {
     fontSize: 14,
@@ -637,7 +644,7 @@ export const RateBoundariesStyles = StyleSheet.create({
     marginTop: 10
   },
   fieldView: {
-    marginTop: 30
+    marginTop: 20
   },
   blackborder: {
     borderBottomColor: 'black'
