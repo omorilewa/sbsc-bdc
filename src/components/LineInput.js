@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import {
   string,
   object,
@@ -10,16 +10,12 @@ import {
 import { Input, Item, Icon } from "native-base";
 import { LineInputStyles as styles } from "../styles";
 
-const LineInput = ({
-  placeholder,
-  maxLength,
-  style,
-  secureTextEntry,
-  keyboardType,
-  meta: { touched, error, active, dirty, submitFailed },
-  input: { onChange, onFocus, ...restInput }
-}) => {
-  const toggleStyle = () => {
+
+
+class LineInput extends PureComponent {
+
+  toggleStyle = () => {
+    const { meta: { error, active, dirty } } = this.props;
     if (dirty && error) {
       return styles.errorInput;
     } else if (active) {
@@ -27,23 +23,34 @@ const LineInput = ({
     }
   }
 
-  return (
-    <Item style={toggleStyle()}>
-      <Input
-        style={style}
-        onChangeText={onChange}
-        onFocus={onFocus}
-        {...restInput}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        placeholderTextColor="#D1D1D1"
-        maxLength={maxLength}
-        keyboardType={keyboardType}
-      />
-      {(dirty || submitFailed) && error && <Icon style={styles.errorText} name="close-circle" />}
-    </Item>
-  )
-};
+  render() {
+    const {
+      placeholder,
+      maxLength,
+      style,
+      secureTextEntry,
+      keyboardType,
+      meta: {  error, dirty, submitFailed },
+      input: { onChange, onFocus, ...restInput }
+    } = this.props;
+    return (
+      <Item style={this.toggleStyle()}>
+        <Input
+          style={style}
+          onChangeText={onChange}
+          onFocus={onFocus}
+          {...restInput}
+          placeholder={placeholder}
+          secureTextEntry={secureTextEntry}
+          placeholderTextColor="#D1D1D1"
+          maxLength={maxLength}
+          keyboardType={keyboardType}
+        />
+        {(dirty || submitFailed) && error && <Icon style={styles.errorText} name="close-circle" />}
+      </Item>
+    );
+  }
+}
 
 LineInput.propTypes = {
   meta: object,
