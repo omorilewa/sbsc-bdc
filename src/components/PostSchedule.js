@@ -9,9 +9,9 @@ import {
   TimePickerAndroid,
   ActivityIndicator
 } from 'react-native';
+import { Input, Item } from "native-base";
 import { showMessage } from "react-native-flash-message";
-
-import { UPDATE_PERIOD } from '../util';
+import { UPDATE_PERIOD, UPDATE_COMP_DELAY } from '../util';
 import { SubHeader, StyledText as Text, PeriodPicker } from '.';
 import { RateBoundariesStyles as styles } from "../styles";
 
@@ -27,6 +27,7 @@ const initialState = {
     EVENING: '',
   },
   isValid: true,
+  isEmpty: false,
   MORNING: '',
   AFTERNOON: '',
   EVENING: '',
@@ -37,7 +38,7 @@ class PostSchedule extends PureComponent {
     handleSubmit: func,
   }
 
-  state = {...initialState}
+  state = { ...initialState, textValue: '' }
 
   _formatTime = (hour, minute) => {
     const normalizedMinute = minute < 10 ? '0' + minute : minute;
@@ -50,7 +51,7 @@ class PostSchedule extends PureComponent {
     return moment(time, "hmm").toISOString();
   }
 
-  _validateInput = (timeArray) => {
+  _validateSchedule = (timeArray) => {
     let check = true;
     for (let index = 0; index < timeArray.length - 1; index += 1) {
       if (timeArray[index + 1] <= timeArray[index]) {
@@ -61,12 +62,51 @@ class PostSchedule extends PureComponent {
     return check
   }
 
+  _validateDelayPeriod = (textValue) => {
+    this.setState(() => ({ isEmpty: false }))
+    let check = true;
+    if (isNaN(textValue)) {
+      return;
+    }
+
+    this.setState(() => ({ textValue }));
+    return check
+  }
+
+  onSubmit = () => {
+    const { textValue } = this.state;
+    let empty = false
+    if (!textValue) {
+      empty = true;
+      this.setState(() => ({ isEmpty: true, textValue }));
+      return empty;
+    }
+    return empty;
+  }
+
   clearForm = () => {
     this.setState(() => (initialState))
     showMessage({
       message: "Schedule successfully updated",
       type: "success",
       backgroundColor: "#19B01D"
+    });
+  }
+
+  clearDelayPeriod = () => {
+    this.setState(() => ({ textValue: '' }));
+    showMessage({
+      message: "Schedule successfully updated",
+      type: "success",
+      backgroundColor: "#19B01D"
+    });
+  }
+
+  showError = () => {
+    showMessage({
+      message: "An error occured. Retry.",
+      type: "danger",
+      backgroundColor: "red"
     });
   }
 
@@ -107,14 +147,16 @@ class PostSchedule extends PureComponent {
         AFTERNOON_ITEMS,
         EVENING_ITEMS,
         rawMoment,
-        isValid
+        isValid,
+        textValue,
+        isEmpty,
       },
-      showPicker, _validateInput } = this;
+      showPicker, _validateSchedule, _validateDelayPeriod, onSubmit, clearDelayPeriod, showError } = this;
     const timeArray = [rawMoment.MORNING, rawMoment.AFTERNOON, rawMoment.EVENING]
     return (
       <View style={styles.wrapperView}>
         <SubHeader pageHeaderText="POST SCHEDULE" settings />
-        <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 10 }}>
+        <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps={'always'}>
           <Text style={styles.postScheduleText}>Post Schedule:</Text>
           <View style={styles.pickersView}>
             <View style={styles.timePicker}>
@@ -133,8 +175,8 @@ class PostSchedule extends PureComponent {
               </TouchableHighlight>
             </View>
           </View>
-          <Mutation mutation={UPDATE_PERIOD} onError={this.showError} onCompleted={this.clearForm}>
-            {(changePeriod, { data, loading, error }) => {
+          <Mutation mutation={UPDATE_PERIOD} onError={showError} onCompleted={this.clearForm}>
+            {(changePeriod, { loading, error }) => {
               return (
                 <View style={{ flexDirection: 'column', marginTop: 10 }}>
                   <TouchableHighlight
@@ -147,7 +189,7 @@ class PostSchedule extends PureComponent {
                         return;
                       }
                       let check = true;
-                      check = _validateInput(timeArray);
+                      check = _validateSchedule(timeArray);
                       if (!check) {
                         return;
                       }
@@ -168,8 +210,55 @@ class PostSchedule extends PureComponent {
                       </View>}
                     </Fragment>
                   </TouchableHighlight>
-                  {error && <Text style={styles.errorText}>An error occured</Text>}
                   {!isValid && <Text style={styles.errorText}>Whoops! Order of the rates is wrong. Check and re-enter the rates.</Text>}
+                </View>
+              );
+            }}
+          </Mutation>
+          <Text style={[styles.postScheduleText, styles.compSchedule]}>Computation Schedule Setting:</Text>
+          <Text style={styles.comp}>Computation Delay Period (InMinutes):</Text>
+          <View style={styles.input}>
+            <Item style={styles.blackborder}>
+              <Input
+                style={styles.inputField}
+                value={textValue}
+                onChangeText={_validateDelayPeriod}
+                placeholder={'Enter time'}
+                placeholderTextColor="#D1D1D1"
+                keyboardType={'numeric'}
+              />
+            </Item>
+          </View>
+          <Mutation mutation={UPDATE_COMP_DELAY} onError={showError} onCompleted={clearDelayPeriod}>
+            {(changeDelay, { data, loading, error }) => {
+              return (
+                <View style={{ flexDirection: 'column', marginTop: 10 }}>
+                  <TouchableHighlight
+                    underlayColor="#19B01D"
+                    style={styles.buttonBody}
+                    onPress={() => {
+                      const shouldSubmit = onSubmit();
+                      if (shouldSubmit) {
+                        return;
+                      }
+
+                      return changeDelay({
+                        variables: { compDelay: textValue },
+                      })
+                    }
+                    }
+                  >
+                    <Fragment>
+                      {!loading && <Text style={styles.buttonText}>Save settings</Text>}
+                      {loading && <View style={styles.spinner}>
+                        <ActivityIndicator
+                          size="large"
+                          color="white"
+                        />
+                      </View>}
+                    </Fragment>
+                  </TouchableHighlight>
+                  {isEmpty && <Text style={styles.errorText}>Fields must have a value.</Text>}
                 </View>
               );
             }}
