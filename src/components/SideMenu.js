@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import { Icon } from "native-base";
 import { SideMenuStyles as styles } from '../styles';
 import { getItem, clearStorage, persistor, client } from '../util';
 import { StyledText as Text, SideMenuItemWrapper } from '.';
@@ -93,11 +94,8 @@ class SideMenu extends PureComponent {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('ManageUsers')} underlayColor="#004900">
               <View style={[styles.label, styles.userLabel]}>
-                <Image
-                  style={styles.configIcon}
-                  source={require(`../assets/images/icon_settings.png`)}
-                />
-                <Text style={[styles.menuItemsText, styles.usersText]}>MANAGE USERS</Text>
+              <Icon name="contacts" style={styles.icons}></Icon>
+              <Text style={[styles.menuItemsText, styles.usersText]}>MANAGE USERS</Text>
               </View>
             </SideMenuItemWrapper>
           }
@@ -105,10 +103,7 @@ class SideMenu extends PureComponent {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('Configuration')} underlayColor="#004900">
               <View style={styles.label}>
-                <Image
-                  style={styles.configIcon}
-                  source={require(`../assets/images/icon_settings.png`)}
-                />
+              <Icon name="contract" style={styles.icons}></Icon>
                 <Text style={[styles.menuItemsText, styles.helpText]}>RATE BOUNDARIES</Text>
               </View>
             </SideMenuItemWrapper>
@@ -117,20 +112,14 @@ class SideMenu extends PureComponent {
             isAdmin &&
             <SideMenuItemWrapper onPress={navigateToScreen('PostSchedule')} underlayColor="#004900">
               <View style={styles.label}>
-                <Image
-                  style={styles.configIcon}
-                  source={require(`../assets/images/icon_settings.png`)}
-                />
+                <Icon name="cog" style={styles.icons}></Icon>
                 <Text style={[styles.menuItemsText, styles.helpText]}>POST SCHEDULE</Text>
               </View>
             </SideMenuItemWrapper>
           }
           <SideMenuItemWrapper onPress={navigateToScreen('Update')} underlayColor="#004900">
             <View style={styles.label}>
-              <Image
-                style={styles.configIcon}
-                source={require(`../assets/images/icon_settings.png`)}
-              />
+            <Icon name="cloud-download" style={styles.icons}></Icon>
               <Text style={[styles.menuItemsText, styles.helpText]}>APP UPDATES</Text>
             </View>
           </SideMenuItemWrapper>

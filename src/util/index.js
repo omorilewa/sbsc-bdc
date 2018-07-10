@@ -21,7 +21,8 @@ export {
   APPROVE_USER,
   DEACTIVATE_USER,
   FETCH_APKS,
-  UPDATE_PERIOD
+  UPDATE_PERIOD,
+  UPDATE_COMP_DELAY
 } from './operations';
 export {
   loadImage,
