@@ -24,7 +24,6 @@ export { Questions } from './Questions';
 export { default as FAQModalForm } from './FAQModalForm';
 export { default as FAQPage } from './FAQPage';
 export { default as Loader } from './Loader';
-export { default as CreateUserForm } from './CreateUserForm';
 export { default as CreateUserPage } from './CreateUserPage';
 export { default as UsersTableHeader } from './UsersTableHeader';
 export { default as UserListItem } from './UserListItem';

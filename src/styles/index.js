@@ -971,9 +971,6 @@ export const UserStyles = StyleSheet.create({
   body: {
     fontSize: 12,
   },
-  contentWidth: {
-    // width: '40%'
-  },
   currency: {
     fontSize: 12,
     color: 'black'
@@ -991,7 +988,7 @@ export const UserStyles = StyleSheet.create({
     marginTop: 5
   },
   buttonBody: {
-    height: 32,
+    height: 42,
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
@@ -1002,8 +999,8 @@ export const UserStyles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 12,
-    fontFamily: 'montserrat-light',
+    fontSize: 15,
+    fontFamily: 'montserrat',
   },
   dropdown: {
     width: '45%',
@@ -1012,12 +1009,12 @@ export const UserStyles = StyleSheet.create({
     flexDirection:'row'
   },
   dropdowntext: {
-    fontFamily: "montserrat-light",
-    fontSize: 9,
+    fontFamily: "montserrat",
+    fontSize: 12,
   },
   formLabel: {
-    fontSize: 12,
-    fontFamily: "montserrat-light",
+    fontSize: 14,
+    fontFamily: "montserrat",
     color: '#000000',
     marginTop: 8,
     paddingBottom: 0,
