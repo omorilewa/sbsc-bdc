@@ -91,6 +91,15 @@ mutation updatePeriodTimes($timePeriods: [PeriodTimeInput!]!) {
 }
 `;
 
+export const UPDATE_COMP_DELAY = gql`
+mutation updateComputationScheduleSettings($compDelay: PositiveInt! ) {
+  updateComputationScheduleSettings(data: {
+    computationDelayPeriodInMinutes: $compDelay
+  }) {
+    computationDelayPeriodInMinutes
+  }
+}
+`
 export const DEACTIVATE_USER = gql`
   mutation deactivateUser($userId: ID!) {
     deactivateUser(userId: $userId){
