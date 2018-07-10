@@ -82,6 +82,24 @@ export const APPROVE_USER = gql`
   }
 `;
 
+export const UPDATE_PERIOD = gql`
+mutation updatePeriodTimes($timePeriods: [PeriodTimeInput!]!) {
+  updatePeriodTimes(data: $timePeriods) {
+    value
+    timeOfTheDay
+  }
+}
+`;
+
+export const UPDATE_COMP_DELAY = gql`
+mutation updateComputationScheduleSettings($compDelay: PositiveInt! ) {
+  updateComputationScheduleSettings(data: {
+    computationDelayPeriodInMinutes: $compDelay
+  }) {
+    computationDelayPeriodInMinutes
+  }
+}
+`
 export const DEACTIVATE_USER = gql`
   mutation deactivateUser($userId: ID!) {
     deactivateUser(userId: $userId){

@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import { FETCH_APKS } from '../util';
 import { UpdateApkStyles as styles } from '../styles';
 
-const Update = () => (
+const UpdatePage = () => (
   <Query query={FETCH_APKS}>
     {({ loading, error, data }) => {
       if (loading) return (
@@ -25,15 +25,15 @@ const Update = () => (
         <FlatList
           data={apklist}
           renderItem={({ item, index }) => (
-            <View style={{ marginBottom: 8}}>
+            <View style={{ marginBottom: 8 }}>
               <TouchableHighlight onPress={() => Linking.openURL(item.url)}>
-              <View
-                key={index}
-                style={(index % 2 !== 0) ?
-                  styles.usersView :
-                  [styles.usersView, styles.listBGColor]}>
-                <Text style={styles.text}>{item.name}</Text>
-              </View>
+                <View
+                  key={index}
+                  style={(index % 2 !== 0) ?
+                    styles.usersView :
+                    [styles.usersView, styles.listBGColor]}>
+                  <Text style={styles.text}>{item.name}</Text>
+                </View>
               </TouchableHighlight>
             </View>
           )}
@@ -43,4 +43,4 @@ const Update = () => (
   </Query>
 );
 
-export default Update;
+export default UpdatePage;

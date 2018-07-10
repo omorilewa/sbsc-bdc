@@ -554,6 +554,23 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontFamily: "montserrat-bold",
     marginBottom: 7,
   },
+  wrapperView: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingBottom: 15
+  },
+  contentContainer: {
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  timePicker: {
+    width: '30%',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 13,
+    marginTop: 10
+  },
   bg: {
     backgroundColor: 'white',
     height: '100%'
@@ -573,7 +590,7 @@ export const RateBoundariesStyles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: "montserrat-bold",
   },
   pickerButton: {
@@ -583,8 +600,9 @@ export const RateBoundariesStyles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonBody: {
-    borderRadius: 30,
-    marginTop: 40,
+    width: '100%',
+    borderRadius: 5,
+    marginTop: 10,
     height: 40,
     backgroundColor: "#1AB21E",
     alignItems: 'center',
@@ -597,23 +615,32 @@ export const RateBoundariesStyles = StyleSheet.create({
     marginBottom: 15,
   },
   postScheduleText: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: "montserrat",
     color: "#1AB21E",
     marginTop: 25,
     marginBottom: 15,
   },
+  compSchedule: {
+    marginTop: 50
+  },
   pickersView: {
+    width: '100%',
     flexDirection: "row",
     justifyContent: "space-between"
   },
-  pickerLabel: {
-    color: "#3E3E3E",
-    fontSize: 11,
-    fontFamily: "montserrat-bold",
+  comp: {
+    color: 'black',
+    fontSize: 14
+  },
+  input: {
+    marginTop: 10
   },
   fieldView: {
     marginTop: 30
+  },
+  blackborder: {
+    borderBottomColor: 'black'
   },
   icon: {
     width: 25,
@@ -630,7 +657,7 @@ export const RateBoundariesStyles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
-    fontSize: 11,
+    fontSize: 14,
     height: 20,
     marginTop: 7,
     fontFamily: 'montserrat',
@@ -640,16 +667,27 @@ export const RateBoundariesStyles = StyleSheet.create({
 export const PeriodPickerStyles = StyleSheet.create({
   pickerLabel: {
     color: "#3E3E3E",
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: "montserrat-bold",
   },
-  wrapper: {
-    width: "25%",
+  timeDisplay: {
+    fontSize: 16
+  },
+  textView: {
+    height: 25,
+    marginTop: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    width: '100%',
+  },
+  timePicker: {
+    width: '30%'
   },
   pickerIcon: {
-    fontSize: 10,
+    fontSize: 25,
     color: '#1AB21E',
-    marginTop: 18,
+    marginTop: 12,
+    marginRight: 6
   },
   picker: {
     width: '80%',
@@ -1155,6 +1193,10 @@ export const SideMenuStyles = StyleSheet.create({
     fontSize: 9,
     color: '#C0C7C4'
   },
+  icons: {
+    fontSize: 30,
+    color: 'white'
+  },
   bottom: {
     flex: 1,
     flexDirection: 'row',
@@ -1181,16 +1223,17 @@ export const SideMenuStyles = StyleSheet.create({
   },
   menuItemsText: {
     fontFamily: 'montserrat-bold',
-    padding: 3,
     color: 'white',
     fontSize: 14,
+    marginTop: 10,
     marginLeft: '12%'
   },
   helpText: {
     marginLeft: '10%'
   },
   usersText: {
-    marginLeft: '13%'
+    marginLeft: '13%',
+    marginTop: 7
   },
   footer: {
     position: 'absolute',

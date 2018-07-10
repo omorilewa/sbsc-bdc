@@ -20,7 +20,9 @@ export {
   PREV_RATES,
   APPROVE_USER,
   DEACTIVATE_USER,
-  FETCH_APKS
+  FETCH_APKS,
+  UPDATE_PERIOD,
+  UPDATE_COMP_DELAY
 } from './operations';
 export {
   loadImage,
