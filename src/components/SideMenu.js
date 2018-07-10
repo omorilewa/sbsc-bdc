@@ -60,7 +60,7 @@ class SideMenu extends PureComponent {
                   style={styles.newRateIcon}
                   source={require(`../assets/images/icon_calendar.png`)}
                 />
-                <Text style={styles.menuItemsText}>INPUT NEW RATE</Text>
+                <Text style={styles.menuItems}>INPUT NEW RATE</Text>
               </View>
             </SideMenuItemWrapper>
           }
@@ -73,7 +73,7 @@ class SideMenu extends PureComponent {
                   style={styles.prevRateIcon}
                   source={require(`../assets/images/icon_news.png`)}
                 />
-                <Text style={styles.menuItemsText}>PREVIOUS RATES</Text>
+                <Text style={styles.menuItems}>PREVIOUS RATES</Text>
               </View>
             </SideMenuItemWrapper>
           }
@@ -86,7 +86,7 @@ class SideMenu extends PureComponent {
                   style={styles.icon}
                   source={require(`../assets/images/icon_profile.png`)}
                 />
-                <Text style={[styles.menuItemsText, styles.usersText]}>CREATE USERS</Text>
+                <Text style={[styles.menuItems, styles.usersText]}>CREATE USERS</Text>
               </View>
             </SideMenuItemWrapper>
           }
@@ -131,7 +131,7 @@ class SideMenu extends PureComponent {
                   style={styles.icon}
                   source={require(`../assets/images/icon_help.png`)}
                 />
-                <Text style={[styles.menuItemsText, styles.helpText]}>HELP</Text>
+                <Text style={[styles.menuItems, styles.helpText]}>HELP</Text>
               </View>
             </SideMenuItemWrapper>
           }

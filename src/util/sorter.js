@@ -78,5 +78,7 @@ export const transformUsers = (rawData) => {
 }
 
 export const locationId = (data, location) => {
-  return (data.locations.find(item => item.name === location)).id;
+  if(data && data.locations) {
+    return (data.locations.find(item => item.name === location)).id;
+  }
 }

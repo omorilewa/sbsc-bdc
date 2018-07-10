@@ -82,6 +82,15 @@ export const APPROVE_USER = gql`
   }
 `;
 
+export const UPDATE_RATE_BOUNDARIES  = gql`
+mutation rateBoundaries($boundarySettings: UpdateRateBoundarySettingsInput!) {
+  updateRateBoundarySettings(data:$boundarySettings ){
+    id
+    name
+  }
+}
+`;
+
 export const UPDATE_PERIOD = gql`
 mutation updatePeriodTimes($timePeriods: [PeriodTimeInput!]!) {
   updatePeriodTimes(data: $timePeriods) {

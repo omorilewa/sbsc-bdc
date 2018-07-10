@@ -22,7 +22,8 @@ export {
   DEACTIVATE_USER,
   FETCH_APKS,
   UPDATE_PERIOD,
-  UPDATE_COMP_DELAY
+  UPDATE_COMP_DELAY,
+  UPDATE_RATE_BOUNDARIES
 } from './operations';
 export {
   loadImage,
