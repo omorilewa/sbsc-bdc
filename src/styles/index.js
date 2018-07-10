@@ -530,6 +530,15 @@ export const RateBoundariesStyles = StyleSheet.create({
     fontFamily: "montserrat-bold",
     marginBottom: 7,
   },
+  wrapperView: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingBottom: 15
+  },
+  contentContainer: {
+    paddingLeft: 10,
+    paddingRight: 10
+  },
   timePicker: {
     width: '30%',
   },
@@ -581,13 +590,26 @@ export const RateBoundariesStyles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 15,
   },
+  compSchedule: {
+    marginTop: 50
+  },
   pickersView: {
     width: '100%',
     flexDirection: "row",
     justifyContent: "space-between"
   },
+  comp: {
+    color: 'black',
+    fontSize: 14
+  },
+  input: {
+    marginTop: 10
+  },
   fieldView: {
     marginTop: 30
+  },
+  blackborder: {
+    borderBottomColor: 'black'
   },
   icon: {
     width: 25,
@@ -604,7 +626,7 @@ export const RateBoundariesStyles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
-    fontSize: 11,
+    fontSize: 14,
     height: 20,
     marginTop: 7,
     fontFamily: 'montserrat',
