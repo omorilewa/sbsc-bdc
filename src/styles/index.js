@@ -1162,6 +1162,10 @@ export const SideMenuStyles = StyleSheet.create({
     fontSize: 9,
     color: '#C0C7C4'
   },
+  icons: {
+    fontSize: 30,
+    color: 'white'
+  },
   bottom: {
     flex: 1,
     flexDirection: 'row',
@@ -1188,16 +1192,17 @@ export const SideMenuStyles = StyleSheet.create({
   },
   menuItemsText: {
     fontFamily: 'montserrat-bold',
-    padding: 3,
     color: 'white',
     fontSize: 14,
+    marginTop: 10,
     marginLeft: '12%'
   },
   helpText: {
     marginLeft: '10%'
   },
   usersText: {
-    marginLeft: '13%'
+    marginLeft: '13%',
+    marginTop: 7
   },
   footer: {
     position: 'absolute',
