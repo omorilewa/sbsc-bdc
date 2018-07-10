@@ -570,7 +570,6 @@ export const RateBoundariesStyles = StyleSheet.create({
   },
   contentCon: {
     flexGrow: 1,
-    // padding: 10,
     paddingBottom: 100
   },
   timePicker: {
@@ -1230,6 +1229,13 @@ export const SideMenuStyles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     marginTop: 10,
+    marginLeft: '12%'
+  },
+  menuItems: {
+    fontFamily: 'montserrat-bold',
+    color: 'white',
+    fontSize: 14,
+    marginTop: 5,
     marginLeft: '12%'
   },
   helpText: {
