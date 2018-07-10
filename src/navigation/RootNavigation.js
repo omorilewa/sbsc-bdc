@@ -87,7 +87,7 @@ const noTransitionConfig = () => ({
 });
 
 export const PrimaryNavigator = StackNavigator({
-  Main: { screen: HomeScreen },
+  Main: { screen: RateBoundariesScreen },
   DrawerStack: { screen: DrawerNavigation },
 }, {
     // Default config for all screens
