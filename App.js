@@ -9,6 +9,7 @@ import {
   StyleSheet,
   View,
   StatusBar,
+  BackHandler
 } from 'react-native';
 import codePush from "react-native-code-push";
 import SplashScreen from 'react-native-splash-screen'
@@ -18,13 +19,11 @@ import { Sentry } from 'react-native-sentry';
 import FlashMessage from "react-native-flash-message";
 import { PrimaryNavigator } from "./src/navigation";
 import { store, client } from "./src/util";
-import { NavigationActions } from 'react-navigation';
 console.disableYellowBox = true;
 
 
 Sentry.config('https://c9d63a6d35ca4c2bac30a2b979f5d68e:a42fa9660e7f472caa041e7d9db8ee49@sentry.io/1206436').install();
 
-const defaultGetStateForAction = PrimaryNavigator.router.getStateForAction;
 
 class App extends Component {
 
@@ -32,27 +31,16 @@ class App extends Component {
     // After having done stuff (such as async tasks) hide the splash screen
     SplashScreen.hide();
     if (Platform.OS === 'android') {
-      PrimaryNavigator.router.getStateForAction = (action, state) => {
-        const screen = state ? state.routes[state.index] : null;
-        const tab = screen && screen.routes ? screen.routes[screen.index] : null;
-        const tabScreen = tab && tab.routes ? tab.routes[tab.index] : null;
-        if (
-          action.type === NavigationActions.BACK &&
-          tab && tab.routeName === 'DrawerStack' &&
-          tabScreen && tabScreen.routeName === 'DrawerClose'
-        ) {
-          const newRoutes = state.routes.filter(r => {
-            return r.routeName !== 'Main'});
-          const newIndex = newRoutes.length - 1;
-          return defaultGetStateForAction(action, {
-            index: newIndex,
-            routes: newRoutes
-          });
-        }
+      BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed());
+    };
+  }
 
-        return defaultGetStateForAction(action, state);
-      };
-    }
+  onBackButtonPressed() {
+    return false;
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('backPress');
   }
 
   render() {
