@@ -31,16 +31,12 @@ class App extends Component {
     // After having done stuff (such as async tasks) hide the splash screen
     SplashScreen.hide();
     if (Platform.OS === 'android') {
-      BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressed());
+      BackHandler.addEventListener('hardwareBackPress', () => { return true; });
     };
   }
 
-  onBackButtonPressed() {
-    return false;
-  }
-
   componentWillUnmount() {
-    BackHandler.removeEventListener('backPress');
+    BackHandler.removeEventListener('hardwareBackPress');
   }
 
   render() {
